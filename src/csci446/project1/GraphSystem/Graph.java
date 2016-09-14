@@ -71,5 +71,17 @@ public class Graph {
             System.out.print(" connects to P" + this.connections.get(i).point2.id);
             System.out.println();
         }
+        
     }
+    
+    //added returns for the array and arraylist so I could use them in MinConflict -Lukas
+     public Point[] returnArray()
+     {
+          return(points);   
+     }
+
+     public ArrayList<Connection> returnArrayList()         
+     {
+          return(connections);
+     }
 }
