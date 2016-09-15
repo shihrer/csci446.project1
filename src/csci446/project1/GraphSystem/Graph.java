@@ -10,6 +10,7 @@ public class Graph {
 
     public final Point[] points;
     public final ArrayList<Connection> connections;
+    public final boolean[][] adjacencyMatrix;
 
     public Graph(int points) {
         //Create an empty array to store the points in the graph.
@@ -21,8 +22,8 @@ public class Graph {
         for(int i = 0; i < points; i++) {
             boolean duplicate = true;
             while(duplicate) {
-                xValues[i] = (float) Math.random();
-                yValues[i] = (float) Math.random();
+                xValues[i] = (float) Math.random()*2 - 1;
+                yValues[i] = (float) Math.random()*2 - 1;
 
                 for(int j = 0; j < points; j++ ) {
                     if(xValues[j] == 0.0f) {
@@ -63,6 +64,14 @@ public class Graph {
             if(!result) {
                 pointsThatCanStillConnect.remove(random);
             }
+        }
+
+        //Create an adjacency matrix
+        this.adjacencyMatrix = new boolean[points][points];
+
+        for (Connection connection: this.connections) {
+            this.adjacencyMatrix[connection.point1.id][connection.point2.id] = true;
+            this.adjacencyMatrix[connection.point2.id][connection.point1.id] = true;
         }
 
         System.out.println("Connections Created:");
