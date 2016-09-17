@@ -1,57 +1,58 @@
 package csci446.project1.GraphSystem;
 
+import java.awt.geom.Line2D;
+
 /**
  * Created by cetho on 9/3/2016.
  */
 public class Connection {
     final public Point point1;
     final public Point point2;
-    final private double slope;
-    final private double intercept;
-    final private double[] collisionBox;
 
     public Connection(Point point1, Point point2) {
         this.point1 = point1;
         this.point2 = point2;
-        //Calculate the slope.
-        this.slope = (point2.y - point1.y)/(point2.x-point1.x);
-        this.intercept = point1.y - (this.slope * point1.x);
-
-        double minx = (point1.x < point2.x) ? point1.x : point2.x;
-        double maxx = (point1.x < point2.x) ? point2.x : point2.x;
-        double miny = (point1.y < point2.y) ? point1.y : point2.y;
-        double maxy = (point1.y < point2.y) ? point2.y : point2.y;
-
-        this.collisionBox = new double[] {minx,maxx,miny,maxy};
     }
 
     public boolean checkForCollision(Connection intersectingConnection) {
-        //Check for identical connections.
-        if(this.point1 == intersectingConnection.point1 && this.point2 == intersectingConnection.point2) {
+
+        // Made after learned about this:
+        // http://stackoverflow.com/questions/16333650/how-to-check-whether-2-lines-segments-intersect
+
+        //Line2D line1 = new Line2D.Double(this.point1.x, this.point1.y, this.point2.x, this.point2.y);
+        //Line2D line2 = new Line2D.Double(intersectingConnection.point1.x, intersectingConnection.point1.y, intersectingConnection.point2.x, intersectingConnection.point2.y);
+
+        //This might be counting the end of the lines.
+        //return line1.intersectsLine(line2)
+
+        // New method produces more reasonable numbers
+
+        //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
+        return intersect(this.point1, this.point2, intersectingConnection.point1, intersectingConnection.point2);
+    }
+
+    //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
+    public static int orientation(Point p, Point q, Point r) {
+        double val = (q.y - p.y) * (r.x - q.x)
+                - (q.x - p.x) * (r.y - q.y);
+
+        if (val == 0.0)
+            return 0; // colinear
+        return (val > 0) ? 1 : 2; // clock or counterclock wise
+    }
+
+    //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
+    public static boolean intersect(Point p1, Point q1, Point p2, Point q2) {
+
+        int o1 = orientation(p1, q1, p2);
+        int o2 = orientation(p1, q1, q2);
+        int o3 = orientation(p2, q2, p1);
+        int o4 = orientation(p2, q2, q1);
+
+        if (o1 != o2 && o3 != o4)
             return true;
-        }
-        //Check for identical lines where the points may be reversed.
-        if(this.point2 == intersectingConnection.point1 && this.point1 == intersectingConnection.point2) {
-            return true;
-        }
-        //Find the intersection of both connections.
-        double intersectx = (intersectingConnection.intercept - this.intercept)/(this.slope - intersectingConnection.slope);
-        double intersecty = (this.slope*intersectx) + this.intercept;
-        //Check if that intersect is within both collision boxes. If it is, the true connections intersect.
-        if(intersectx >= collisionBox[0] && intersectx <= collisionBox[1]) {
-            if(intersecty >= collisionBox[2] && intersecty <= collisionBox[3]) {
-                //The intersect is within the first box. Check the second.
-                if(intersectx >= intersectingConnection.collisionBox[0] && intersectx <= intersectingConnection.collisionBox[1]) {
-                    if(intersecty >= intersectingConnection.collisionBox[2] && intersecty <= intersectingConnection.collisionBox[3]) {
-                        //These connections collide and are invalid.
-                        return true;
-                    }
-                }
-            }
-        }
 
         return false;
     }
-
 
 }

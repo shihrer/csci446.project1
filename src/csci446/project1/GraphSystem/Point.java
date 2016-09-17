@@ -38,7 +38,7 @@ public class Point {
 
     private double distanceSquaredToPoint(Point point) {
         //Using that wonderful distance formula! Minus the square root. That's just a waste of CPU time.
-        return Math.pow((point.x - this.x),2) + Math.pow((point.y - this.y),2);
+        return Math.sqrt(Math.pow((point.x - this.x),2) + Math.pow((point.y - this.y),2));
     }
 
     private boolean canConnect(Point point) {
