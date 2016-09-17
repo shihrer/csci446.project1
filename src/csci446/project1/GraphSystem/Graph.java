@@ -84,12 +84,13 @@ public class Graph {
     }
     
     //added returns for the array and arraylist so I could use them in MinConflict -Lukas
-     public Point[] returnArray()
+
+    //The variables are public and final. So you can just grab them with "graph.points". - Chris
+    public Point[] returnArray()
      {
           return(points);   
      }
-
-     public ArrayList<Connection> returnArrayList()         
+    public ArrayList<Connection> returnArrayList()
      {
           return(connections);
      }

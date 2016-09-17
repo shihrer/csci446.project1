@@ -12,8 +12,11 @@ public class Main {
         
         // Create a graph.
 	    Graph graph = new Graph(numberOfPoints);
-            //runs graph coloring with min conflict
-            MinConflict minconflict = new MinConflict(numberOfPoints, numberOfColors, graph.returnArray(), graph.returnArrayList());
+
+        //runs graph coloring with min conflict
+        MinConflict minConflict = new MinConflict(numberOfPoints, numberOfColors, graph.points, graph.connections);
+        //run graph coloring with simple backtracking
+        SimpleBacktracking simpleBacktracking = new SimpleBacktracking(numberOfColors, graph);
     }
     
 }

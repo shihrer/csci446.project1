@@ -16,9 +16,9 @@ public class Point {
     private int currentListSpot;
     private Point[] possibleConnections;
     //Store any connections this point has to other points.
-    private ArrayList<Point> connectedPoints;
+    public ArrayList<Point> connectedPoints;
 
-    public Point(float x, float y, Graph graph, int id) {
+    Point(float x, float y, Graph graph, int id) {
         this.x = x;
         this.y = y;
         this.id = id;
@@ -30,18 +30,18 @@ public class Point {
 
     }
 
-    public void setup() {
+    void setup() {
         //Setup to do after all points have been created.
         this.possibleConnections = graph.points.clone();
         this.sort();
     }
 
-    public double distanceSquaredToPoint(Point point) {
+    private double distanceSquaredToPoint(Point point) {
         //Using that wonderful distance formula! Minus the square root. That's just a waste of CPU time.
         return Math.pow((point.x - this.x),2) + Math.pow((point.y - this.y),2);
     }
 
-    public boolean canConnect(Point point) {
+    private boolean canConnect(Point point) {
         Connection candidate = new Connection(this, point);
         for(Connection connection : graph.connections) {
             if(connection.checkForCollision(candidate)) {
@@ -124,7 +124,7 @@ public class Point {
         this.possibleConnections[j] = temp;
     }
 
-    public boolean connectToNextPoint() {
+    boolean connectToNextPoint() {
         while (true) {
             if(this.currentListSpot >= this.possibleConnections.length) {
                 //Out of points to try to connect to.
