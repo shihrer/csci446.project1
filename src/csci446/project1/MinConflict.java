@@ -55,9 +55,9 @@ public class MinConflict {
 //    }
     
     //randomly colors graph
-    //for(int i = 0; i < color.length; i++){
-    //    color[i] = (int)(Math.random() * colors) +1;
-    //}
+    for(int i = 0; i < color.length; i++){
+        color[i] = (int)(Math.random() * colors) +1;
+    }
     
     //initially color graph, starting with the point taht has the most connections
     mostConnections();
@@ -68,7 +68,7 @@ public class MinConflict {
         }
         if(connectionsArray.get(i).point1.id != mostConnections && connectionsArray.get(i).point2.id != mostConnections){
          
-              color[connectionsArray.get(i).point1.id] = (int)(Math.random() * colors) +1;
+            color[connectionsArray.get(i).point1.id] = (int)((Math.random() * colors) +1);
         }
     }
   
@@ -79,8 +79,10 @@ public class MinConflict {
     totalConf();
     itterations = 0;
     
-    printConf();
-    printCol();
+    //initial prints
+    //printConf();
+    //printCol();
+    System.out.println();
     
     //now the graph is fully colored and all conflicts are recorded
     while(total > 0){
@@ -98,7 +100,7 @@ public class MinConflict {
         conflicts[i] = checkCon(i);
         }
         //System.out.println(itterations + " " + total);
-        System.out.println("Total Conflicts Remaining: " + totalConf());
+        //System.out.println("Total Conflicts Remaining: " + totalConf());
     }
     
     
@@ -115,7 +117,7 @@ public class MinConflict {
 
     }
     System.out.println("Total conflicts remaining: " + totalConf());
-    System.out.println("P" + mostConnections +" has the most connections.");
+    //System.out.println("P" + mostConnections +" has the most connections.");
     System.out.println("Ran " + itterations + " times");
     
     }
@@ -197,8 +199,8 @@ public class MinConflict {
         //System.out.println("----->" + conflicts[pointID]);
 
         //System.out.println(checkCon(color[pointID]));
-        for(int i = 1; i < numcolors; i++){
-        System.out.println("RECOLORING P" + pointID + " " + i);
+        for(int i = 1; i < numcolors; i++){   
+        //System.out.println("RECOLORING P" + pointID + " to " + i);
         //System.out.println(temp);
         color[pointID] = i;
         //System.out.println(i + "now has " + checkCon(color[pointID]) + " conflicts");
