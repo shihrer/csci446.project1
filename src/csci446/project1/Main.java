@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Basic Settings
-        int numberOfPoints = 100;
+        int numberOfPoints = 10;
         int numberOfColors = 3; //k
         
         // Create a graph.

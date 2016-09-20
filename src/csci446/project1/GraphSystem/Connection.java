@@ -1,7 +1,5 @@
 package csci446.project1.GraphSystem;
 
-import java.awt.geom.Line2D;
-
 /**
  * Created by cetho on 9/3/2016.
  */
@@ -15,43 +13,114 @@ public class Connection {
     }
 
     public boolean checkForCollision(Connection intersectingConnection) {
+        double x1 = this.point1.x;
+        double x2 = this.point2.x;
+        double y1 = this.point1.y;
+        double y2 = this.point2.y;
 
-        // Made after learned about this:
-        // http://stackoverflow.com/questions/16333650/how-to-check-whether-2-lines-segments-intersect
+        double x3 = intersectingConnection.point1.x;
+        double x4 = intersectingConnection.point2.x;
+        double y3 = intersectingConnection.point1.y;
+        double y4 = intersectingConnection.point2.y;
 
-        //Line2D line1 = new Line2D.Double(this.point1.x, this.point1.y, this.point2.x, this.point2.y);
-        //Line2D line2 = new Line2D.Double(intersectingConnection.point1.x, intersectingConnection.point1.y, intersectingConnection.point2.x, intersectingConnection.point2.y);
+        /*
+         * Collision detection algorithm based off:
+         * http://stackoverflow.com/a/16314158
+         */
 
-        //This might be counting the end of the lines.
-        //return line1.intersectsLine(line2)
+        //Check for vertical lines
+        if(x1 == x2 || x3 == x4) {
+            if(x1 == x2 && x3 == x4) {
+                //Both vertical
+                if(x1 != x3) {
+                    //Not at the same x.
+                    return false;
+                }
+                //Check if y coordinates over lap.
+                double max1 = Math.max(y1, y2);
+                double min1 = Math.min(y1, y2);
+                double max2 = Math.max(y3, y4);
+                double min2 = Math.min(y3, y4);
 
-        // New method produces more reasonable numbers
+                if(max1 <= min2 && max1 < max2) {
+                    //No intersect, l2 above l1
+                    return false;
+                }
+                else if(max2 <= min1 && max2 < min1) {
+                    //l1 above l2
+                    return false;
+                }
+                else {
+                    //If its not above and its not below, its in between.
+                    return true;
+                }
+            }
+            //Only one is vertical
+            if(x1 == x2) {
+                // Line 1 vertical
+                double a2 = (y4 - y3)/(x4 - x3);
+                double b2 = y3 -a2*x3;
 
-        //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
-        return intersect(this.point1, this.point2, intersectingConnection.point1, intersectingConnection.point2);
-    }
+                double xint = a2*x1 + b2;
 
-    //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
-    public static int orientation(Point p, Point q, Point r) {
-        double val = (q.y - p.y) * (r.x - q.x)
-                - (q.x - p.x) * (r.y - q.y);
+                if(xint < Math.max(y1, y2) && xint > Math.min(y1, y2)) {
+                    //Intersects somewhere between the vertical line
+                    return true;
+                }
+                // No intersection
+                return false;
+            }
+            else {
+                //Line 2 vertical
+                double a1 = (y2-y1)/(x2-x1);
+                double b1 = y1 - a1*x1;
 
-        if (val == 0.0)
-            return 0; // colinear
-        return (val > 0) ? 1 : 2; // clock or counterclock wise
-    }
+                double xint = a1*x3 + b1;
 
-    //Based off the solution on Stack Overflow: http://stackoverflow.com/a/25831720
-    public static boolean intersect(Point p1, Point q1, Point p2, Point q2) {
+                if(xint < Math.max(y3, y4) && xint > Math.min(y3, y4)) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        //Neither lines vertical.
+        double a1 = (y2-y1)/(x2-x1);
+        double b1 = y1 - a1*x1;
+        double a2 = (y4-y3)/(x4-x3);
+        double b2 = y3 - a2*x3;
 
-        int o1 = orientation(p1, q1, p2);
-        int o2 = orientation(p1, q1, q2);
-        int o3 = orientation(p2, q2, p1);
-        int o4 = orientation(p2, q2, q1);
+        if(a1 == a2) {
+            //The lines are parallel.
+            if(b1 == b2) {
+                //Same y intercept. Lets cry in a corner. When that's done we need to check if there is overlap.
+                double max1 = Math.max(x1, x2);
+                double min1 = Math.min(x1, x2);
+                double max2 = Math.max(x3, x4);
+                double min2 = Math.min(x3, x4);
 
-        if (o1 != o2 && o3 != o4)
+                if(max1 <= min2 && max1 < max2) {
+                    //No intersect, l2 right of l1
+                    return false;
+                }
+                else if(max2 <= min1 && max2 < min1) {
+                    //l1 eight of l2
+                    return false;
+                }
+                else {
+                    //If its not right and its not left, its in between.
+                    return true;
+                }
+            }
+            // Parallel, different intercepts. We're done.
+            return false;
+        }
+        // Lines not parallel. Thank god.
+        double x0 = -(b1-b2)/(a1-a2);
+        if(Math.min(x1, x2) < x0 && x0 < Math.max(x1, x2) && Math.min(x3, x4) < x0 && x0 < Math.max(x3, x4)) {
+            //x0 is somewhere between both lines. This is an intersection.
             return true;
-
+        }
+        // Home free.
         return false;
     }
 
