@@ -12,14 +12,12 @@ public class SimpleBacktracking {
 
     private int numColors;
 
-    private Graph graph;
     private Point[] points;
 
     public SimpleBacktracking(int numColors, Graph graph) {
         // Initialize variables
         this.numColors = numColors;
 
-        this.graph = graph;
         this.points = graph.points;
 
         colors = new int[points.length];
@@ -31,8 +29,12 @@ public class SimpleBacktracking {
         boolean result = this.graphColoringRecursive(0);
 
         if(result) {
+            System.out.println();
             System.out.println("SimpleBacktracking: Successfully found solution with " + numColors + " colors.");
+            System.out.println();
+            this.printColors();
         } else {
+            System.out.println();
             System.out.println("SimpleBacktracking: Failed to find solution with " + numColors + " colors.");
         }
     }
@@ -70,5 +72,11 @@ public class SimpleBacktracking {
             }
         }
         return true;
+    }
+
+    private void printColors() {
+        for (int i = 0; i < points.length; i++) {
+            System.out.println("SimpleBacktracking: P" + i + ": Color " + this.colors[i]);
+        }
     }
 }

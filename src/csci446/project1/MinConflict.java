@@ -110,15 +110,15 @@ public class MinConflict {
     printCol();
     System.out.println();
     if(itterations == 50){
-        System.out.println("FAILURE");
+        System.out.println("MinConflict: FAILURE");
     }
     else{
-        System.out.println("SUCCESS");
+        System.out.println("MinConflict: SUCCESS");
 
     }
-    System.out.println("Total conflicts remaining: " + totalConf());
+    System.out.println("MinConflict: Total conflicts remaining: " + totalConf());
     //System.out.println("P" + mostConnections +" has the most connections.");
-    System.out.println("Ran " + itterations + " times");
+    System.out.println("MinConflict: Ran " + itterations + " times");
     
     }
     
@@ -145,14 +145,14 @@ public class MinConflict {
     public void printConf(){
     //print list of conflicts
     for(int i =0; i <conflicts.length; i++){
-        System.out.println("P" + i + ": " + conflicts[i] + " conflicts");
+        System.out.println("MinConflict: P" + i + ": " + conflicts[i] + " conflicts");
     }
     }
     
     public void printCol(){
     //print out color[]
     for(int i = 0; i < color.length; i++){
-        System.out.println("P" + i + ": color " +color[i]);
+        System.out.println("MinConflict: P" + i + ": color " +color[i]);
     }
     }
     
