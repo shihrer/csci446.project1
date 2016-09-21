@@ -17,6 +17,8 @@ public class Main {
         MinConflict minConflict = new MinConflict(numberOfPoints, numberOfColors, graph.points, graph.connections);
         //run graph coloring with simple backtracking
         SimpleBacktracking simpleBacktracking = new SimpleBacktracking(numberOfColors, graph);
+        //run graph coloring with forward-checking
+        BacktrackingWithForwardChecking backtrackingWithForwardChecking = new BacktrackingWithForwardChecking(numberOfColors, graph);
     }
     
 }
