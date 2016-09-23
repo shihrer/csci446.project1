@@ -35,8 +35,11 @@ public class SimpleBacktracking {
             System.out.println();
             success = true;
             System.out.println("\tSimpleBacktracking: Successfully found solution with " + numColors + " colors.");
-            //System.out.println();
-            //this.printColors();
+            if(Main.verbose) {
+                System.out.println();
+                this.printColors();
+                System.out.println();
+            }
         } else {
             System.out.println();
             success = false;
@@ -107,7 +110,7 @@ public class SimpleBacktracking {
 
     private void printColors() {
         for (int i = 0; i < points.length; i++) {
-            System.out.println("SimpleBacktracking: P" + i + ": Color " + this.colors[i]);
+            System.out.println("\t\tSimpleBacktracking: P" + i + ": Color " + this.colors[i]);
         }
     }
 }

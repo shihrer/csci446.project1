@@ -40,8 +40,11 @@ public class BacktrackingWithForwardChecking {
             System.out.println();
             success = true;
             System.out.println("\tBacktrackingWithForwardChecking: Successfully found solution with " + numColors + " colors.");
-            System.out.println();
-            //this.printColors();
+            if(Main.verbose) {
+                System.out.println();
+                this.printColors();
+                System.out.println();
+            }
         } else {
             System.out.println();
             success = false;
@@ -54,15 +57,27 @@ public class BacktrackingWithForwardChecking {
         if(currentPoint == points.length) {
             //This is out of bounds, which means we've colored all the points!
             // We're done here.
+            if(Main.verbose) {
+                System.out.println("\t\tBacktrackingWithForwardChecking: Reached base case.");
+            }
             return true;
         }
         // Attempt to color this point.
         for(int color = 1; color <= this.numColors; color++) {
+            if(Main.verbose) {
+                System.out.println("\t\tBacktrackingWithForwardChecking: Checking P" + currentPoint + " for possible colors.");
+            }
             if(canColor(currentPoint, color)) {
                 // We can color this point. Lets do it.
+                if(Main.verbose) {
+                    System.out.println("\t\tBacktrackingWithForwardChecking: Coloring P" + currentPoint + " color " + color);
+                }
                 colors[currentPoint] = color;
                 iterations++;
                 if(iterations >= 40000) {
+                    if(Main.verbose) {
+                        System.out.println("\t\tBacktrackingWithForwardChecking: Reached 40000 iterations. Giving up.");
+                    }
                     return false;
                 }
                 // Forwardchecking : Block off the color for adjacent points.
@@ -73,6 +88,9 @@ public class BacktrackingWithForwardChecking {
                 //Make sure theres still legal moves.
                 if(!legalValuesRemaining(currentPoint)) {
                     //Cant do this. Edit->Undo.
+                    if(Main.verbose) {
+                        System.out.println("\t\tBacktrackingWithForwardChecking: Can't color P" + currentPoint + " with color " + color + ". It blocks off a connected point.");
+                    }
                     colors[currentPoint] = 0;
                     blockedColors[currentPoint][color - 1] = false;
                     for ( Point point: this.points[currentPoint].connectedPoints) {
@@ -84,6 +102,9 @@ public class BacktrackingWithForwardChecking {
                         return true;
                     }
                     // It failed to color. :( Lets remove our color because this is a bad path
+                    if(Main.verbose) {
+                        System.out.println("\t\tBacktrackingWithForwardChecking: Couldn't color under P" + currentPoint + " with color " + color + ". Trying a new one.");
+                    }
                     colors[currentPoint] = 0;
                     blockedColors[currentPoint][color - 1] = false;
                     for ( Point point: this.points[currentPoint].connectedPoints) {
@@ -93,6 +114,9 @@ public class BacktrackingWithForwardChecking {
             }
         }
         // Ran out of colors to try. We've failed. Hopefully our friends higher in the chain can color the graph.
+        if(Main.verbose) {
+            System.out.println("\t\tBacktrackingWithForwardChecking: Out of colors to try at P" + currentPoint + ". Backtracking.");
+        }
         return false;
     }
 
@@ -124,7 +148,7 @@ public class BacktrackingWithForwardChecking {
 
     private void printColors() {
         for (int i = 0; i < points.length; i++) {
-            System.out.println("BacktrackingWithForwardChecking: P" + i + ": Color " + this.colors[i]);
+            System.out.println("\t\tBacktrackingWithForwardChecking: P" + i + ": Color " + this.colors[i]);
         }
     }
 }
