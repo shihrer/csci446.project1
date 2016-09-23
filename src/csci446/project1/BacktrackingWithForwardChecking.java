@@ -62,6 +62,9 @@ public class BacktrackingWithForwardChecking {
                 // We can color this point. Lets do it.
                 colors[currentPoint] = color;
                 iterations++;
+                if(iterations >= 40000) {
+                    return false;
+                }
                 // Forwardchecking : Block off the color for adjacent points.
                 blockedColors[currentPoint][color - 1] = true; //Block this color for ourselves, just to say we chose it.
                 for ( Point point: this.points[currentPoint].connectedPoints) {
