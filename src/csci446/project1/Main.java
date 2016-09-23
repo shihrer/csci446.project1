@@ -11,7 +11,7 @@ public class Main {
         int endingColors = 4;
         int numberOfTries = 2;
         int startingGraphSize = 10;
-        int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
+        int graphIncrementSize = 2; //Normally 10, but it will take forever for backtracking.
         int graphIncrementCount = 10;
         boolean multithreaded = false;
 
@@ -60,9 +60,9 @@ public class Main {
                 for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
                     System.out.println("\t\tTry " + tryNum + ":");
                     if(minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-                        System.out.println("\t\t\tMinConflict: Success, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].itterations);
+                        System.out.println("\t\t\tMinConflict: Success, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
                     } else {
-                        System.out.println("\t\t\tMinConflict: Failure, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].itterations);
+                        System.out.println("\t\t\tMinConflict: Failure, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
                     }
                     if(simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
                         System.out.println("\t\t\tSimpleBacktracking: Success, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
