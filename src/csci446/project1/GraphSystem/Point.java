@@ -1,5 +1,6 @@
 package csci446.project1.GraphSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,7 +8,7 @@ import java.util.Comparator;
 /**
  * Created by cetho on 9/1/2016.
  */
-public class Point {
+public class Point implements Serializable {
     //Store the coordinates of this point.
     final public double x;
     final public double y;

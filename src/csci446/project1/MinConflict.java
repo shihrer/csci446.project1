@@ -155,7 +155,7 @@ public class MinConflict {
             for(int i =0; i < points; i++){
                 conflicts[i] = checkCon(i);
             }
-            System.out.println("Total Conflicts Remaining: " + totalConf());
+            //System.out.println("Total Conflicts Remaining: " + totalConf());
         }
 
 
@@ -165,17 +165,17 @@ public class MinConflict {
         printCol();
         System.out.println();
         if(total == 0){
-            System.out.println("SUCCESS");
+            System.out.println("\tMinConflict: SUCCESS");
             this.success = true;
         }
         else{
-            System.out.println("FAILURE");
+            System.out.println("\tMinConflict: FAILURE");
             this.success = false;
         }
-        System.out.println("Total conflicts remaining: " + totalConf());
-        System.out.println("P" + mostConnections +" has the most connections with " + connections[mostConnections]);
-        System.out.println("P" + mostConf +" has the most conflicts with " + conflicts[mostConf]);
-        System.out.println("Total number of points colored/reColored: " + timesColored);
+        //System.out.println("Total conflicts remaining: " + totalConf());
+        //System.out.println("P" + mostConnections +" has the most connections with " + connections[mostConnections]);
+        //System.out.println("P" + mostConf +" has the most conflicts with " + conflicts[mostConf]);
+        //System.out.println("Total number of points colored/reColored: " + timesColored);
 
     }
 
@@ -207,7 +207,7 @@ public class MinConflict {
     //prints off the number of connections each point has
     public void printConn(){
         for(int i = 0; i < connections.length; i++){
-            System.out.println("P" + i + " has " + connections[i] + " connections");
+            //System.out.println("P" + i + " has " + connections[i] + " connections");
         }
     }
 
@@ -215,7 +215,7 @@ public class MinConflict {
     public void printConf(){
         //print list of conflicts
         for(int i =0; i <conflicts.length; i++){
-            System.out.println("P" + i + ": " + conflicts[i] + " conflicts");
+            //System.out.println("P" + i + ": " + conflicts[i] + " conflicts");
         }
     }
 
@@ -223,7 +223,7 @@ public class MinConflict {
     public void printCol(){
         //print out color[]
         for(int i = 0; i < color.length; i++){
-            System.out.println("P" + i + ": color " +color[i]);
+            //System.out.println("P" + i + ": color " +color[i]);
         }
     }
 
@@ -287,9 +287,9 @@ public class MinConflict {
                 color[pointID] = numcolors;
             }
 
-            System.out.println("RECOLORING P" + pointID + " to " + i);
+            //System.out.println("RECOLORING P" + pointID + " to " + i);
             color[pointID] = i;
-            System.out.println("P" + pointID + " now has " + checkCon(pointID) + " conflicts");
+            //System.out.println("P" + pointID + " now has " + checkCon(pointID) + " conflicts");
             if(checkCon(pointID) == 0){ //breaks if is reColored to zero conflicts
                 break;
             }

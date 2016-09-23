@@ -1,12 +1,13 @@
 package csci446.project1.GraphSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Created by cetho on 9/1/2016.
  */
-public class Graph {
+public class Graph implements Serializable {
 
     public final Point[] points;
     public final ArrayList<Connection> connections;
