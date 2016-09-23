@@ -31,7 +31,7 @@ public class Main {
         skipTestSets[10] = false;
 
         boolean multithreaded = false;
-        boolean loadGraphs = false;
+        boolean loadGraphs = true;
         boolean writeGraphs = false;
 
         Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
