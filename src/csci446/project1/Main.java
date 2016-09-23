@@ -11,7 +11,7 @@ public class Main {
         int endingColors = 4;
         int numberOfTries = 2;
         int startingGraphSize = 10;
-        int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
+        int graphIncrementSize = 2; //Normally 10, but it will take forever for backtracking.
         int graphIncrementCount = 10;
         boolean multithreaded = false;
 
@@ -42,13 +42,17 @@ public class Main {
                         simpleBacktrackingThread.join();
                         simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = simpleBacktrackingThread.getInstance();
 
-                        backtrackingWithForwardCheckingThread.join();
-                        backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
-                    } else {
-//                        minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new MinConflict(graphs[testSet * tryNum - 1].points.length, colors, graphs[testSet * tryNum - 1].points, graphs[testSet * tryNum - 1].connections);
-//                        simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
-//                        backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new BacktrackingWithForwardChecking(colors, graphs[testSet * tryNum - 1]);
-                        geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new Genetic(graphs[testSet * tryNum - 1], colors);
+                            backtrackingWithForwardCheckingThread.join();
+                            backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
+
+                            geneticThread.join();
+                            geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = geneticThread.getInstance();
+                        } else {
+                            minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new MinConflict(graphs[testSet * tryNum - 1].points.length, colors, graphs[testSet * tryNum - 1].points, graphs[testSet * tryNum - 1].connections);
+                            simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
+                            backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new BacktrackingWithForwardChecking(colors, graphs[testSet * tryNum - 1]);
+                            geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new Genetic(graphs[testSet * tryNum - 1], colors);
+                        }
                     }
                 }
             }
@@ -58,28 +62,30 @@ public class Main {
         for (int colors = startingColors; colors <= endingColors; colors++) {
             System.out.println("Test Graphs With " + colors + " Colors:");
             for (int testSet = 1; testSet <= graphIncrementCount; testSet++) {
-                System.out.println("\t" + (startingGraphSize + (testSet - 1) * graphIncrementSize) + " points:");
-                for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
-                    System.out.println("\t\tTry " + tryNum + ":");
-//                    if(minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-//                        System.out.println("\t\t\tMinConflict: Success, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
-//                    } else {
-//                        System.out.println("\t\t\tMinConflict: Failure, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
-//                    }
-//                    if(simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-//                        System.out.println("\t\t\tSimpleBacktracking: Success, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-//                    } else {
-//                        System.out.println("\t\t\tSimpleBacktracking: Failure, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-//                    }
-//                    if(backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-//                        System.out.println("\t\t\tBacktrackingWithForwardChecking: Success, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-//                    } else {
-//                        System.out.println("\t\t\tBacktrackingWithForwardChecking: Failure, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-//                    }
-                    if(geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-                        System.out.println("\t\t\tGenetic Algorithm: Success, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-                    } else {
-                        System.out.println("\t\t\tGenetic Algorithm: Failure, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                if(!skipTestSets[testSet]) {
+                    System.out.println("\t" + (startingGraphSize + (testSet - 1) * graphIncrementSize) + " points:");
+                    for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
+                        System.out.println("\t\tTry " + tryNum + ":");
+                        if (minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                            System.out.println("\t\t\tMinConflict: Success, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
+                        } else {
+                            System.out.println("\t\t\tMinConflict: Failure, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].timesColored);
+                        }
+                        if (simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                            System.out.println("\t\t\tSimpleBacktracking: Success, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        } else {
+                            System.out.println("\t\t\tSimpleBacktracking: Failure, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        }
+                        if (backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                            System.out.println("\t\t\tBacktrackingWithForwardChecking: Success, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        } else {
+                            System.out.println("\t\t\tBacktrackingWithForwardChecking: Failure, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        }
+                        if(geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                            System.out.println("\t\t\tGenetic Algorithm: Success, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        } else {
+                            System.out.println("\t\t\tGenetic Algorithm: Failure, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        }
                     }
                 }
             }

@@ -1,9 +1,11 @@
 package csci446.project1.GraphSystem;
 
+import java.io.Serializable;
+
 /**
  * Created by cetho on 9/3/2016.
  */
-public class Connection {
+public class Connection implements Serializable {
     final public Point point1;
     final public Point point2;
 
