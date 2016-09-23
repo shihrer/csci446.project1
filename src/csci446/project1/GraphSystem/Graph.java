@@ -23,8 +23,8 @@ public class Graph implements Serializable {
         for(int i = 0; i < points; i++) {
             boolean duplicate = true;
             while(duplicate) {
-                xValues[i] = (float) Math.random()*2 - 1;
-                yValues[i] = (float) Math.random()*2 - 1;
+                xValues[i] = (float) Math.random();
+                yValues[i] = (float) Math.random();
 
                 for(int j = 0; j < points; j++ ) {
                     if(xValues[j] == 0.0f) {
