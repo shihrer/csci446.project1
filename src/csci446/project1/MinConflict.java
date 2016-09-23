@@ -49,6 +49,7 @@ public class MinConflict {
     //printConn();
     
     color[mostConf] = 1;
+    timesColored++;
     checkAllCon();
     //initially color graph with colors 1-3 and no conflicts
     for(int k = 1; k <=3; k++){
