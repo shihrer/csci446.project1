@@ -10,9 +10,6 @@ public class BacktrackingMAC {
     private int k;
     boolean success = false;
     int iterations = 0;
-    // Holds a stack so it's easy to backtrack
-//    int[] coloring;
-//    HashSet<Integer>[] domains;
 
     BacktrackingMAC(Graph graph, int k){
         //Setup stacks
@@ -45,15 +42,15 @@ public class BacktrackingMAC {
     private boolean colorGraph(int vertex, int[] coloring, boolean[][] domains){
         if(vertex == graph.points.length)
             return true;
+        iterations++;
+        if(iterations >= 40000) {
+            return false;
+        }
 
         for(int color = 0; color < k; color++)
         {
             if(canColor(vertex, color, coloring)) {
                 coloring[vertex] = color;
-                iterations++;
-                if(iterations >= 40000) {
-                    return false;
-                }
                 for(int x = 0; x < k; x++){
                     if(x != color)
                         domains[vertex][x] = false;
@@ -62,10 +59,7 @@ public class BacktrackingMAC {
                 if(!makeArcConsistent(vertex, domains))
                     return false;
 
-                if(isSolved(domains)) {
-                    return true;
-                }
-                if (colorGraph(vertex + 1, coloring.clone(), copyDomains(domains)))
+                if (isSolved(domains) || colorGraph(vertex + 1, coloring.clone(), copyDomains(domains)))
                     return true;
                 else
                     coloring[vertex] = -1;
@@ -107,20 +101,22 @@ public class BacktrackingMAC {
         arcQueue.push(vertex);
         while(!arcQueue.isEmpty()){
             int point = arcQueue.pop();
-            visited.add(point);
-            for(Point connectedPoint : graph.points[point].connectedPoints){
-                if(removeInconsistentValues(point, connectedPoint.id, domains)){
-                    boolean isEmpty = true;
-                    for(int x = 0; x < domains[connectedPoint.id].length; x++){
-                        if(domains[connectedPoint.id][x])
-                            isEmpty = false;
-                    }
-                    if(isEmpty)
-                        return false;
+            if(!visited.contains(point)) {
+                visited.add(point);
+                for (Point connectedPoint : graph.points[point].connectedPoints) {
+                    if (removeInconsistentValues(point, connectedPoint.id, domains)) {
+                        boolean isEmpty = true;
+                        for (int x = 0; x < domains[connectedPoint.id].length; x++) {
+                            if (domains[connectedPoint.id][x])
+                                isEmpty = false;
+                        }
+                        if (isEmpty)
+                            return false;
 
-                    for(Point neighbors : graph.points[connectedPoint.id].connectedPoints){
-                        if(!visited.contains(neighbors.id))
-                            arcQueue.push(neighbors.id);
+                        for (Point neighbors : graph.points[connectedPoint.id].connectedPoints) {
+                            if (!visited.contains(neighbors.id))
+                                arcQueue.push(neighbors.id);
+                        }
                     }
                 }
             }
@@ -143,9 +139,9 @@ public class BacktrackingMAC {
 
     private boolean checkConstraints(int x, int p, boolean[][] domains) {
         boolean isLegal = false;
-        int domainCount = 0;
-        // If only 1 value,
+        // Look for any value in p domain that is not equal to x
         for(int y = 0; y < domains[p].length; y++){
+            // Check that y exists in p and y != x
             if(domains[p][y] && y != x)
                 isLegal = true;
         }
