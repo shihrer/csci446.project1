@@ -80,6 +80,7 @@ public class Main {
         MinConflict[] minConflictSolutions = new MinConflict[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
         SimpleBacktracking[] simpleBacktrackingSolutions = new SimpleBacktracking[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
         BacktrackingWithForwardChecking[] backtrackingWithForwardCheckingSolutions = new BacktrackingWithForwardChecking[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
+        Genetic[] geneticSolutions = new Genetic[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
 
         // Run all the tests, storing their graphs and results.
 
@@ -99,6 +100,8 @@ public class Main {
                             simpleBacktrackingThread.run();
                             BacktrackingWithForwardCheckingThread backtrackingWithForwardCheckingThread = new BacktrackingWithForwardCheckingThread(testSet, colors, startingColors, tryNum, graphs);
                             backtrackingWithForwardCheckingThread.run();
+                            GeneticThread geneticThread = new GeneticThread(testSet, colors, startingColors, tryNum, graphs);
+                            geneticThread.run();
 
                             minConflictThread.join();
                             minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = minConflictThread.getInstance();
@@ -108,10 +111,14 @@ public class Main {
 
                             backtrackingWithForwardCheckingThread.join();
                             backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
+
+                            geneticThread.join();
+                            geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = geneticThread.getInstance();
                         } else {
                             minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new MinConflict(graphs[testSet * tryNum - 1].points.length, colors, graphs[testSet * tryNum - 1].points, graphs[testSet * tryNum - 1].connections);
                             simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
                             backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new BacktrackingWithForwardChecking(colors, graphs[testSet * tryNum - 1]);
+                            geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new Genetic(graphs[testSet * tryNum - 1], colors);
                         }
                     }
                 }
@@ -141,6 +148,11 @@ public class Main {
                         } else {
                             System.out.println("\t\t\tBacktrackingWithForwardChecking: Failure, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
                         }
+                    }
+                    if(geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                        System.out.println("\t\t\tGenetic Algorithm: Success, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                    } else {
+                        System.out.println("\t\t\tGenetic Algorithm: Failure, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
                     }
                 }
             }
