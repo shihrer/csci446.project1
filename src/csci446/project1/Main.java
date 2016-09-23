@@ -18,6 +18,9 @@ public class Main {
 
         boolean[] skipTestSets = new boolean[graphIncrementCount + 1];
         //SET ANY TESTS YOU WANT TO SKIP TO TRUE
+        //There is no test 0.
+        skipTestSets[1] = false;
+        skipTestSets[2] = true;
         skipTestSets[3] = true;
         skipTestSets[4] = true;
         skipTestSets[5] = true;
@@ -148,11 +151,11 @@ public class Main {
                         } else {
                             System.out.println("\t\t\tBacktrackingWithForwardChecking: Failure, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
                         }
-                    }
-                    if(geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
-                        System.out.println("\t\t\tGenetic Algorithm: Success, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
-                    } else {
-                        System.out.println("\t\t\tGenetic Algorithm: Failure, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        if(geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                            System.out.println("\t\t\tGenetic Algorithm: Success, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        } else {
+                            System.out.println("\t\t\tGenetic Algorithm: Failure, Iterations: " + geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                        }
                     }
                 }
             }
