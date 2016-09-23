@@ -26,26 +26,26 @@ class Genetic {
     }
     private void run()
     {
-        generateRandomPopulation(1000);
+        generateRandomPopulation(100);
 
-        while(!foundSolution() && this.iterations < 1000) {
+        while(!foundSolution() && this.iterations < 2000) {
             tournament();
             breedPopulation();
             this.iterations++;
         }
 
         if(success) {
-            System.out.println("Found solution in " + this.iterations + " iterations.");
-            System.out.println("Solution: " + winner.getChromosome());
+            System.out.println("\n\t\tGenetic Algorithm: Found solution in " + this.iterations + " iterations.");
+            System.out.println("\t\tSolution: " + winner.toString());
         }
         else{
-            System.out.println("No solution found.");
+            System.out.println("\n\t\tGenetic Algorithm: No solution found in " + this.iterations + " iterations.");
         }
     }
 
     private boolean foundSolution() {
         for(Chromosome candidate : population){
-            if(candidate.getFitness() == 0){
+            if(candidate.getConflicts() == 0) {
                 winner = candidate;
                 this.success = true;
                 return true;
@@ -62,37 +62,31 @@ class Genetic {
         }
     }
     private Chromosome createRandomChromosome() {
-        StringBuilder chromosome = new StringBuilder();
-        for (Point point : graph.points) chromosome.append(randomGenerator.nextInt(k));
+        int[] chromosome = new int[graph.points.length];
+        for(int i = 0; i < chromosome.length; i++){
+            chromosome[i] = randomGenerator.nextInt(k);
+        }
 
-        return new Chromosome(chromosome.toString());
+        return new Chromosome(chromosome);
     }
     private void fitness(Chromosome chromosome) {
         List<Point> visited = new ArrayList<>();
         int conflicts = 0;
+        // Tracks how many nodes without conflicts a candidate has
+        int chainCount = 0;
         // Check for conflicts
         // Chromosome applies to colors in the graph.points array
         // Check for conflicts
         // Return count of conflicts
-        Stack<Point> nodeStack = new Stack<>();
-        nodeStack.push(graph.points[0]);
-        while(!nodeStack.isEmpty()) {
-            Point vertex = nodeStack.pop();
-            //check if I've been already
-            if(!visited.contains(vertex)) {
-                visited.add(vertex);
-                //label vertex as visited
-                vertex.connectedPoints.forEach(nodeStack::push);
-                for(Point connectedPoint : vertex.connectedPoints){
-                    if(chromosome.getNodeColor(vertex.id) == chromosome.getNodeColor(connectedPoint.id) && !visited.contains(connectedPoint))
-                    {
-                        conflicts++;
-                    }
-                }
+        for(Point point : graph.points){
+            if(!canColor(point, chromosome.getNodeColor(point.id), chromosome))
+            {
+                conflicts++;
             }
         }
 
-        chromosome.setFitness(conflicts);
+        chromosome.setConflicts(conflicts);
+        chromosome.setNodesWithoutConflicts(chainCount);
     }
 
     private void tournament() {
@@ -108,7 +102,7 @@ class Genetic {
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
             // Compare fitness of two chromosomes.  Throw out the loser.
-            if (c1.getFitness() > c2.getFitness())
+            if (c1.getConflicts() > c2.getConflicts())
                 population.add(c2);
             else
                 population.add(c1);
@@ -135,20 +129,71 @@ class Genetic {
     }
 
     private List<Chromosome> crossover(Chromosome c1, Chromosome c2){
-        int crossoverPoint = randomGenerator.nextInt(c1.getChromosome().length());
+        int crossoverPoint = randomGenerator.nextInt(c1.getChromosome().length);
         List<Chromosome> family = new ArrayList<>();
         family.add(c1);
         family.add(c2);
         //This creates two offspring
-        String child1 = c1.getChromosome().substring(0, crossoverPoint).concat(c2.getChromosome().substring(crossoverPoint, c2.getChromosome().length()));
-        String child2 = c2.getChromosome().substring(0, crossoverPoint).concat(c1.getChromosome().substring(crossoverPoint, c1.getChromosome().length()));;
+        int[] p1 = c1.getChromosome();
+        int[] p2 = c2.getChromosome();
+        int[] child1 = new int[p1.length];
+        int[] child2 = new int[p1.length];
+        for(int i = 0; i < crossoverPoint; i++) {
+            child1[i] = p1[i];
+            child2[i] = p2[i];
+        }
+        for(int i = crossoverPoint; i < c1.getChromosome().length; i++){
+            child1[i] = p2[i];
+            child2[i] = p1[i];
+
+        }
+
         Chromosome childChromosome1 = new Chromosome(child1);
         Chromosome childChromosome2 = new Chromosome(child2);
         fitness(childChromosome1);
         fitness(childChromosome2);
+
+        //Mutate a random offspring
+        int randomOffspring = randomGenerator.nextInt(2);
+        if(randomOffspring == 0)
+            mutate(childChromosome1);
+        else
+            mutate(childChromosome2);
+
         family.add(childChromosome1);
         family.add(childChromosome2);
 
         return family;
+    }
+
+    private void mutate(Chromosome chromosome){
+        int[] sequence = chromosome.getChromosome();
+        for(Point point : graph.points){
+            if(!canColor(point, sequence[point.id], chromosome)){
+                //pick random color that's not current
+                boolean colorChanged = false;
+                while(!colorChanged){
+                    int newColor = randomGenerator.nextInt(3);
+                    if(newColor != sequence[point.id]){
+                        sequence[point.id] = newColor;
+                        colorChanged = true;
+                    }
+                }
+
+            }
+        }
+
+        chromosome.setChromosome(sequence);
+        fitness(chromosome);
+    }
+
+    private boolean canColor(Point point, int color, Chromosome chromosome){
+        for(Point connectedPoint : point.connectedPoints){
+            if(chromosome.getNodeColor(connectedPoint.id) == color) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

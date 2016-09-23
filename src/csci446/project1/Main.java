@@ -19,9 +19,9 @@ public class Main {
         boolean[] skipTestSets = new boolean[graphIncrementCount + 1];
         //SET ANY TESTS YOU WANT TO SKIP TO TRUE
         //There is no test 0.
-        skipTestSets[1] = false;
+        skipTestSets[1] = true;
         skipTestSets[2] = true;
-        skipTestSets[3] = true;
+        skipTestSets[3] = false;
         skipTestSets[4] = true;
         skipTestSets[5] = true;
         skipTestSets[6] = true;

@@ -4,26 +4,44 @@ package csci446.project1;
  * Created by michael on 9/22/2016.
  */
 public class Chromosome {
-    private String chromosome;
-    private int fitness;
+    private int[] chromosome;
+    private int conflicts;
+    private int nodesWithoutConflicts;
 
-    Chromosome(String chromosome){
+    Chromosome(int[] chromosome){
         this.chromosome = chromosome;
-        this.fitness = -1;
+        this.conflicts = -1;
     }
 
-    public int getFitness(){
-        return fitness;
+    public int getConflicts(){
+        return conflicts;
     }
-    public void setFitness(int fitness){
-        this.fitness = fitness;
+    public void setConflicts(int conflicts){
+        this.conflicts = conflicts;
     }
-
-    public String getChromosome(){
+    public int getNodesWithoutConflicts(){
+        return nodesWithoutConflicts;
+    }
+    public void setNodesWithoutConflicts(int count){
+        nodesWithoutConflicts = count;
+    }
+    public int[] getChromosome(){
         return chromosome;
+    }
+    public void setChromosome(int[] chromosome){
+        this.chromosome = chromosome;
     }
 
     public int getNodeColor(int id) {
-        return chromosome.charAt(id);
+        return chromosome[id];
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder chromeString = new StringBuilder();
+        for(int i = 0; i < chromosome.length; i++)
+            chromeString.append(chromosome[i]);
+
+        return chromeString.toString();
     }
 }
