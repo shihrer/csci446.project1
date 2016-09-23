@@ -30,7 +30,7 @@ public class Main {
         skipTestSets[9] = false;
         skipTestSets[10] = false;
 
-        boolean multithreaded = true;
+        boolean multithreaded = false;
         boolean loadGraphs = false;
         boolean writeGraphs = false;
 

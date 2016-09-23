@@ -3,9 +3,7 @@ package csci446.project1;
 import csci446.project1.GraphSystem.Graph;
 import csci446.project1.GraphSystem.Point;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 public class BacktrackingMAC {
     private Graph graph;
@@ -13,27 +11,30 @@ public class BacktrackingMAC {
     boolean success = false;
     int iterations = 0;
     // Holds a stack so it's easy to backtrack
-    Stack<int[]> colorings;
-    Stack<HashSet<Integer>[]> domains;
+//    int[] coloring;
+//    HashSet<Integer>[] domains;
 
     BacktrackingMAC(Graph graph, int k){
+        //Setup stacks
+        int[] coloring = new int[graph.points.length];
+        HashSet<Integer>[] domains = new HashSet[graph.points.length];
+
         this.graph = graph;
         this.k = k;
-        this.colorings.push(new int[k]);
-        //Initial color state
-        for(int i = 0; i < k; i++){
-            colorings.peek()[i] = -1;
-        }
 
-        domains.push(new HashSet[graph.points.length]);
+        //Initial color state
+        for(int i = 0; i < graph.points.length; i++){
+            coloring[i] = -1;
+        }
         //Initial domain values
         for(int i = 0; i < graph.points.length; i++){
+            domains[i] = new HashSet<Integer>();
             for(int j=0; j < k; j++){
-                domains.peek()[i].add(j);
+                domains[i].add(j);
             }
         }
 
-        success = colorGraph(0);
+        success = colorGraph(0, coloring.clone(), domains.clone());
 
         if(success){
             System.out.println("\tBacktracking with MAC: Successfully found solution with " + k + " colors.");
@@ -42,64 +43,60 @@ public class BacktrackingMAC {
         }
     }
 
-    boolean colorGraph(int vertex){
+    private boolean colorGraph(int vertex, int[] coloring, HashSet<Integer>[] domains){
         if(vertex == graph.points.length)
             return true;
 
         for(int color = 0; color < k; color++)
         {
-            if(canColor(vertex, color)) {
-                colorings.peek()[vertex] = color;
+            if(canColor(vertex, color, coloring)) {
+                coloring[vertex] = color;
                 // Update arc consistency
-                makeArcConsistent(vertex);
-                if(isEmptyDomains()){
+                makeArcConsistent(vertex, domains);
+                if(isEmptyDomains(domains)){
                     // Unsolvable, backtrack
-                    colorings.pop();
-                    domains.pop();
                     return false;
                 }
 
                 iterations++;
-                if (colorGraph(vertex + 1)) {
+                if (colorGraph(vertex + 1, coloring.clone(), domains.clone())) {
                     return true;
                 }
 
-                colorings.peek()[vertex] = -1;
+                coloring[vertex] = -1;
             }
         }
-        colorings.pop();
-        domains.pop();
         return false;
     }
 
-    private boolean isEmptyDomains() {
-        for(HashSet domain : domains.peek()){
+    private boolean isEmptyDomains(HashSet[] domains) {
+        for(HashSet domain : domains){
             if(domain.isEmpty())
                 return true;
         }
         return false;
     }
 
-    private boolean canColor(int vertex, int color){
+    private boolean canColor(int vertex, int color, int[] coloring){
         // Check each point connected to the point in question. If we've colored it the color "color" already, then
         // return false.  Check the cspDomains to see if the color is a valid choice (forward checking).  Check the
         // constraints as well.  If there are any adjacent nodes who only have one choice left.
         for(Point checkPoint : graph.points[vertex].connectedPoints) {
-            if(colorings.peek()[checkPoint.id] == color) {
+            if(coloring[checkPoint.id] == color) {
                 return false;
             }
         }
         return true;
     }
 
-    private void makeArcConsistent(int vertex){
+    private void makeArcConsistent(int vertex, HashSet<Integer>[] domains){
         //Examine each arc
         LinkedList<Integer> arcQueue = new LinkedList<>();
         arcQueue.push(vertex);
         while(!arcQueue.isEmpty()){
             int point = arcQueue.pop();
             for(Point connectedPoint : graph.points[point].connectedPoints){
-                if(removeInconsistentValues(point, connectedPoint.id)){
+                if(removeInconsistentValues(point, connectedPoint.id, domains)){
                     for(Point neighbors : graph.points[connectedPoint.id].connectedPoints){
                         arcQueue.push(neighbors.id);
                     }
@@ -109,11 +106,11 @@ public class BacktrackingMAC {
         }
     }
 
-    private boolean removeInconsistentValues(int p1, int p2){
+    private boolean removeInconsistentValues(int p1, int p2, HashSet<Integer>[] domains){
         boolean removed = false;
-        for(int x : domains.peek()[p2]){
-            if(!checkConstraints(x, p1)){
-                domains.peek()[p2].remove(x);
+        for(int x : domains[p2]){
+            if(!checkConstraints(x, p1, domains)){
+                domains[p2].remove(x);
                 removed = true;
             }
         }
@@ -121,10 +118,10 @@ public class BacktrackingMAC {
         return removed;
     }
 
-    private boolean checkConstraints(int x, int p) {
+    private boolean checkConstraints(int x, int p, HashSet<Integer>[] domains) {
         boolean isLegal = false;
         // If only 1 value,
-        for(int y : domains.peek()[p]) {
+        for(int y : domains[p]) {
             if(y != x)
                 isLegal = true;
         }
