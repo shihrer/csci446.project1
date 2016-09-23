@@ -17,7 +17,7 @@ public class BacktrackingMAC {
     BacktrackingMAC(Graph graph, int k){
         //Setup stacks
         int[] coloring = new int[graph.points.length];
-        HashSet<Integer>[] domains = new HashSet[graph.points.length];
+        boolean[][] domains = new boolean[graph.points.length][k];
 
         this.graph = graph;
         this.k = k;
@@ -28,22 +28,21 @@ public class BacktrackingMAC {
         }
         //Initial domain values
         for(int i = 0; i < graph.points.length; i++){
-            domains[i] = new HashSet<Integer>();
             for(int j=0; j < k; j++){
-                domains[i].add(j);
+                domains[i][j] = true;
             }
         }
 
         success = colorGraph(0, coloring.clone(), domains.clone());
 
         if(success){
-            System.out.println("\tBacktracking with MAC: Successfully found solution with " + k + " colors.");
+            System.out.println("\n\tBacktracking with MAC: Successfully found solution with " + k + " colors.");
         }else{
-            System.out.println("\tBacktracking with MAC: Failed to find solution with " + k + " colors.");
+            System.out.println("\n\tBacktracking with MAC: Failed to find solution with " + k + " colors.");
         }
     }
 
-    private boolean colorGraph(int vertex, int[] coloring, HashSet<Integer>[] domains){
+    private boolean colorGraph(int vertex, int[] coloring, boolean[][] domains){
         if(vertex == graph.points.length)
             return true;
 
@@ -51,30 +50,41 @@ public class BacktrackingMAC {
         {
             if(canColor(vertex, color, coloring)) {
                 coloring[vertex] = color;
-                // Update arc consistency
-                makeArcConsistent(vertex, domains);
-                if(isEmptyDomains(domains)){
-                    // Unsolvable, backtrack
+                iterations++;
+                if(iterations >= 40000) {
                     return false;
                 }
+                for(int x = 0; x < k; x++){
+                    if(x != color)
+                        domains[vertex][x] = false;
+                }
+                // Update arc consistency
+                if(!makeArcConsistent(vertex, domains))
+                    return false;
 
-                iterations++;
-                if (colorGraph(vertex + 1, coloring.clone(), domains.clone())) {
+                if(isSolved(domains)) {
                     return true;
                 }
-
-                coloring[vertex] = -1;
+                if (colorGraph(vertex + 1, coloring.clone(), copyDomains(domains)))
+                    return true;
+                else
+                    coloring[vertex] = -1;
             }
         }
         return false;
     }
 
-    private boolean isEmptyDomains(HashSet[] domains) {
-        for(HashSet domain : domains){
-            if(domain.isEmpty())
-                return true;
+    private boolean isSolved(boolean[][] domains) {
+        for(boolean[] domain: domains){
+            int domainCount = 0;
+            for(boolean aDomain : domain){
+                if(aDomain)
+                    domainCount++;
+            }
+            if (domainCount > 1 || domainCount == 0)
+                return false;
         }
-        return false;
+        return true;
     }
 
     private boolean canColor(int vertex, int color, int[] coloring){
@@ -89,28 +99,41 @@ public class BacktrackingMAC {
         return true;
     }
 
-    private void makeArcConsistent(int vertex, HashSet<Integer>[] domains){
+    // Implments AC3 algorithm
+    private boolean makeArcConsistent(int vertex, boolean[][] domains){
         //Examine each arc
         LinkedList<Integer> arcQueue = new LinkedList<>();
+        HashSet<Integer> visited = new HashSet<>();
         arcQueue.push(vertex);
         while(!arcQueue.isEmpty()){
             int point = arcQueue.pop();
+            visited.add(point);
             for(Point connectedPoint : graph.points[point].connectedPoints){
                 if(removeInconsistentValues(point, connectedPoint.id, domains)){
+                    boolean isEmpty = true;
+                    for(int x = 0; x < domains[connectedPoint.id].length; x++){
+                        if(domains[connectedPoint.id][x])
+                            isEmpty = false;
+                    }
+                    if(isEmpty)
+                        return false;
+
                     for(Point neighbors : graph.points[connectedPoint.id].connectedPoints){
-                        arcQueue.push(neighbors.id);
+                        if(!visited.contains(neighbors.id))
+                            arcQueue.push(neighbors.id);
                     }
                 }
-
             }
         }
+
+        return true;
     }
 
-    private boolean removeInconsistentValues(int p1, int p2, HashSet<Integer>[] domains){
+    private boolean removeInconsistentValues(int p1, int p2, boolean[][] domains){
         boolean removed = false;
-        for(int x : domains[p2]){
-            if(!checkConstraints(x, p1, domains)){
-                domains[p2].remove(x);
+        for(int x = 0; x < domains[p2].length; x++){
+            if(domains[p1][x] && !checkConstraints(x, p1, domains)){
+                domains[p2][x] = false;
                 removed = true;
             }
         }
@@ -118,14 +141,23 @@ public class BacktrackingMAC {
         return removed;
     }
 
-    private boolean checkConstraints(int x, int p, HashSet<Integer>[] domains) {
+    private boolean checkConstraints(int x, int p, boolean[][] domains) {
         boolean isLegal = false;
+        int domainCount = 0;
         // If only 1 value,
-        for(int y : domains[p]) {
-            if(y != x)
+        for(int y = 0; y < domains[p].length; y++){
+            if(domains[p][y] && y != x)
                 isLegal = true;
         }
         return isLegal;
+    }
+
+    private boolean[][] copyDomains(boolean[][] domains){
+        boolean[][] copy = new boolean[domains.length][domains[0].length];
+        for(int i = 0; i < domains.length; i++){
+            System.arraycopy(domains[i], 0, copy[i], 0, domains[i].length);
+        }
+        return copy;
     }
 
 }
