@@ -8,6 +8,7 @@ package csci446.project1;
 import csci446.project1.GraphSystem.Connection;
 import csci446.project1.GraphSystem.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -27,8 +28,9 @@ public class MinConflict {
     public int itterations;     //number of itterations that have occured
     public int total;   //total number of conflicts in colored graph
     public int numcolors;   //k
-    public int max = 50;   //max number of itterations before while loop breaks
+    public int max = 100;   //max number of itterations before while loop breaks
     public int last = 0;    //last point colored by the while loop
+    public int timesColored = 0;    //keeps track of how many times a color was changed (either initially colored or reColored)
     
     public MinConflict(int points, int colors, Point[] poi, ArrayList<Connection> con){
     numcolors = colors;
@@ -43,24 +45,75 @@ public class MinConflict {
     checkConnections();
     mostConnections();
     itterations = 0;
-
-    //randomly colors graph. This is to insure that all points have a color. Below we will color specific points to try and optimize coloring.
-    for(int i = 0; i < color.length; i++){
-        //color[i] = (int)(Math.random() * colors) +1;
-        color[i] = numcolors;
+    timesColored = 0;
+    //printConn();
+    
+    color[mostConf] = 1;
+    checkAllCon();
+    //initially color graph with colors 1-3 and no conflicts
+    for(int k = 1; k <=3; k++){
+        for(int i = connections[mostConnections] + 1; i > 0; i--){
+            for(int j = 0; j < connectionsArray.size(); j++){
+                if(connections[connectionsArray.get(j).point1.id] == i && color[connectionsArray.get(j).point1.id] == 0 && color[connectionsArray.get(j).point2.id] != k){
+                    color[connectionsArray.get(j).point1.id] = k;
+                    timesColored ++;
+                }
+                if(checkCon(connectionsArray.get(j).point1.id) > 0){
+                    color[connectionsArray.get(j).point1.id] = 0;
+                    timesColored --;
+                }                   
+                if(connections[connectionsArray.get(j).point2.id] == i && color[connectionsArray.get(j).point2.id] == 0 && color[connectionsArray.get(j).point1.id] != k){
+                    color[connectionsArray.get(j).point2.id] = k;
+                    timesColored ++;
+                }
+                if(checkCon(connectionsArray.get(j).point2.id) > 0){
+                    color[connectionsArray.get(j).point2.id] = 0;
+                    timesColored --;
+                }
+                checkAllCon();
+            }
+        }   
     }
     
-    //initially color graph, starting with the point taht has the most connections
-    color[mostConnections] = 1;
-    for(int i =0; i < connectionsArray.size(); i++){
-        if(connectionsArray.get(i).point1.id == mostConnections){
-            color[connectionsArray.get(i).point2.id] = 2;
-        }
-        if(connectionsArray.get(i).point1.id != mostConnections && connectionsArray.get(i).point2.id != mostConnections){
-            recolor(connectionsArray.get(i).point1.id);
+    //fill as many blank spaces with no conflicts
+    for(int j = 1; j <= numcolors; j++){
+        for(int i = 0; i < connectionsArray.size(); i++){
+            if(color[connectionsArray.get(i).point1.id] == 0 && color[connectionsArray.get(i).point2.id] != j){
+                    //color[connectionsArray.get(i).point1.id] = j;
+                    timesColored ++;
+                    reColor(connectionsArray.get(i).point1.id);
+
+                }
+            if(checkCon(connectionsArray.get(i).point1.id) > 0){
+                reColor(connectionsArray.get(i).point1.id);
+                reColor(connectionsArray.get(i).point2.id);
+                timesColored ++;
+            }            
+            if(color[connectionsArray.get(i).point2.id] == 0 && color[connectionsArray.get(i).point1.id] != j){
+                //color[connectionsArray.get(i).point2.id] = j;
+                timesColored ++;
+                reColor(connectionsArray.get(i).point2.id);
+                
+            }
+            if(checkCon(connectionsArray.get(i).point2.id) > 0){
+                reColor(connectionsArray.get(i).point1.id);
+                reColor(connectionsArray.get(i).point2.id);
+                timesColored ++;
+            } 
+            checkAllCon();
         }
     }
+    
+    //colors final points
+    for(int i = 0; i < color.length; i ++){
+            if(color[i] == 0){
+                timesColored ++;
+                reColor(i);
 
+        }
+            checkAllCon();
+    }
+    
     //initial/debugging prints
     //printConf();
     //printCol();
@@ -68,12 +121,9 @@ public class MinConflict {
     
     
     //check conflicts at every point
-    for(int i =0; i < points; i++){
-         conflicts[i] = checkCon(i);
-         totalConf();
-    }
+    checkAllCon();
     
-    //now the graph is fully colored and all conflicts are recorded, we will recolor points w/ conflicts
+    //now the graph is fully colored and all conflicts are recorded, we will reColor points w/ conflicts
     while(total > 0){
         //breaks loop if loop has run a max number of times
         if(itterations == max){
@@ -81,19 +131,26 @@ public class MinConflict {
         }
         itterations = itterations + 1;
         mostConf();     //finds point with most conflicts
+        checkAllCon();
         totalConf();    //finds total number of conflicts
-        System.out.print("P" + last + " was last recolored. Changing point to P");
+        System.out.print("P" + last + " was last reColored. Changing point. ");
         //To try and prevent loops, if the last point still has most conflicts, this loop finds another
         if(mostConf == last){
-            for(int j = 0; j<conflicts.length; j++ ){
-                if(conflicts[j] == conflicts[mostConf] && j != mostConf){
-                    System.out.println(j);
-                    recolor(j);
+            for(int j = 0; j < connectionsArray.size(); j++ ){
+                if(connectionsArray.get(j).point1.id == mostConf){
+                    timesColored ++;
+                    reColor(connectionsArray.get(j).point2.id);
+                }
+                if(connectionsArray.get(j).point2.id == mostConf){
+                    timesColored ++;
+                    reColor(connectionsArray.get(j).point1.id); 
                 }
             }
         }
-        recolor(mostConf);  //recolors the point with most conflicts
+        else{
+        reColor(mostConf);  //reColors the point with most conflicts
         //recheck conflicts
+        }
         for(int i =0; i < points; i++){
             conflicts[i] = checkCon(i);
         }
@@ -106,18 +163,25 @@ public class MinConflict {
     System.out.println();
     printCol();
     System.out.println();
-    if(itterations == max){
-        System.out.println("FAILURE");
+    if(total == 0){
+        System.out.println("SUCCESS");
     }
     else{
-        System.out.println("SUCCESS");
+        System.out.println("FAILURE");
 
     }
     System.out.println("Total conflicts remaining: " + totalConf());
     System.out.println("P" + mostConnections +" has the most connections with " + connections[mostConnections]);
     System.out.println("P" + mostConf +" has the most conflicts with " + conflicts[mostConf]);
-    System.out.println("Ran " + itterations + " times");
+    System.out.println("Total number of points colored/reColored: " + timesColored);
 
+    }
+    
+    public void checkAllCon(){
+         for(int i =0; i < color.length; i++){
+         conflicts[i] = checkCon(i);
+         totalConf();
+    }
     }
     
     //checks the number of conflicts any given point has
@@ -210,21 +274,34 @@ public class MinConflict {
         return mostConf;
     }
     
-    //recolors a point to minimize local conflicts
-    public void recolor(int pointID){
+    //reColors a point to minimize local conflicts
+    public void reColor(int pointID){
         int temp = checkCon(pointID);
+        timesColored ++;
         //System.out.println(checkCon(color[pointID]));
         for(int i = 1; i <= numcolors; i++){ 
             last = pointID; //used to try an prevent loops
+            if(checkCon(pointID) == 0){ //breaks if is reColored to zero conflicts
+                break;
+            }
             System.out.println("RECOLORING P" + pointID + " to " + i);
             color[pointID] = i;
             System.out.println("P" + pointID + " now has " + checkCon(pointID) + " conflicts");
-            if(checkCon(pointID) == 0){
+            if(checkCon(pointID) == 0){ //breaks if is reColored to zero conflicts
                 break;
             }
             if(checkCon(pointID) < temp){
                 break;
             }
+            if(checkCon(pointID) == temp){
+                for(int j = 0; i < connectionsArray.size(); j++){
+                if(connectionsArray.get(j).point1.id == pointID){
+                    reColor(connectionsArray.get(j).point2.id);
+                }
+                if(connectionsArray.get(j).point2.id == pointID){
+                    reColor(connectionsArray.get(j).point1.id);
+                }
+            }
         }
     }
-}
+}}
