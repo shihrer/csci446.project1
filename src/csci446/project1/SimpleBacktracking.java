@@ -57,6 +57,10 @@ public class SimpleBacktracking {
                 // We can color this point. Lets do it.
                 colors[currentPoint] = color;
                 iterations++;
+                if(iterations >= 40000) {
+                    //Too many iterations.
+                    return false;
+                }
                 // Try to color the next point in the list.
                 if(graphColoringRecursive(currentPoint + 1)) {
                     return true;
