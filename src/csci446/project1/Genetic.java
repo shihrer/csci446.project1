@@ -26,9 +26,9 @@ class Genetic {
     }
     private void run()
     {
-        generateRandomPopulation(graph.points.length * 100);
+        generateRandomPopulation(1000);
 
-        while(!foundSolution() && this.iterations < graph.points.length * 100) {
+        while(!foundSolution() && this.iterations < 2000) {
             tournament();
             breedPopulation();
             this.iterations++;
