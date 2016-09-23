@@ -6,33 +6,37 @@ import java.io.*;
 
 public class Main {
 
+    public static final boolean verbose = true;
+
     public static void main(String[] args) throws InterruptedException {
 
         // Basic Settings IF LOADING THESE MUSSSSSSSSSSSSSSSSSSSST MATCH THE GENERATED DATA.
         int startingColors = 3; //k
         int endingColors = 4;
-        int numberOfTries = 1; //Broken when loading. Only use 1 if loading.
+        int numberOfTries = 1;
         int startingGraphSize = 10;
-        int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
-        int graphIncrementCount = 10;
+        int graphIncrementSize = 10;
+        int graphIncrementCount = 1;
 
         boolean[] skipTestSets = new boolean[graphIncrementCount + 1];
         //SET ANY TESTS YOU WANT TO SKIP TO TRUE
         //There is no test 0.
-        skipTestSets[1] = false;
-        skipTestSets[2] = false;
-        skipTestSets[3] = false;
-        skipTestSets[4] = false;
-        skipTestSets[5] = false;
-        skipTestSets[6] = false;
-        skipTestSets[7] = false;
-        skipTestSets[8] = false;
-        skipTestSets[9] = false;
-        skipTestSets[10] = false;
+        //skipTestSets[1] = false;
+        //skipTestSets[2] = false;
+        //skipTestSets[3] = false;
+        //skipTestSets[4] = false;
+        //skipTestSets[5] = false;
+        //skipTestSets[6] = false;
+        //skipTestSets[7] = false;
+        //skipTestSets[8] = false;
+        //skipTestSets[9] = false;
+        //skipTestSets[10] = false;
 
-        boolean multithreaded = false;
-        boolean loadGraphs = true;
+        boolean multithreaded = true;
+        boolean loadGraphs = false;
         boolean writeGraphs = false;
+
+        boolean verbose = true;
 
         Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
 
@@ -40,16 +44,18 @@ public class Main {
             for (int colors = startingColors; colors <= endingColors; colors++) {
                 for (int testSet = 1; testSet <= graphIncrementCount; testSet++) {
                     for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
-                        graphs[testSet * tryNum - 1] = new Graph(startingGraphSize + ((testSet - 1) * graphIncrementSize));
-                        try {
-                            FileOutputStream fileOut = new FileOutputStream("tests/" + (testSet * tryNum - 1) + ".ser");
-                            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                            out.writeObject(graphs[testSet * tryNum - 1]);
-                            out.close();
-                            fileOut.close();
-                            System.out.printf("Serialized data for graph " + (testSet * tryNum - 1) +  " is saved.");
-                        }catch(IOException i) {
-                            i.printStackTrace();
+                        if(colors == startingColors) {
+                            graphs[testSet * tryNum - 1] = new Graph(startingGraphSize + ((testSet - 1) * graphIncrementSize));
+                            try {
+                                FileOutputStream fileOut = new FileOutputStream("tests/" + (testSet * tryNum - 1) + ".ser");
+                                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                                out.writeObject(graphs[testSet * tryNum - 1]);
+                                out.close();
+                                fileOut.close();
+                                System.out.printf("Serialized data for graph " + (testSet * tryNum - 1) + " is saved.");
+                            } catch (IOException i) {
+                                i.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -94,7 +100,7 @@ public class Main {
                     System.out.println("Testing " + (startingGraphSize + (testSet - 1) * graphIncrementSize) + " points:");
                     for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
 
-                        if (!loadGraphs) {
+                        if (!loadGraphs && colors == startingColors) {
                             graphs[testSet * tryNum - 1] = new Graph(startingGraphSize + ((testSet - 1) * graphIncrementSize));
                         }
                         if (multithreaded) {
@@ -104,6 +110,8 @@ public class Main {
                             simpleBacktrackingThread.run();
                             BacktrackingWithForwardCheckingThread backtrackingWithForwardCheckingThread = new BacktrackingWithForwardCheckingThread(testSet, colors, startingColors, tryNum, graphs);
                             backtrackingWithForwardCheckingThread.run();
+                            BacktrackingMACThread backtrackingMACThread = new BacktrackingMACThread(testSet, colors, startingColors, tryNum, graphs);
+                            backtrackingMACThread.run();
                             GeneticThread geneticThread = new GeneticThread(testSet, colors, startingColors, tryNum, graphs);
                             geneticThread.run();
 
@@ -115,6 +123,9 @@ public class Main {
 
                             backtrackingWithForwardCheckingThread.join();
                             backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
+
+                            backtrackingMACThread.join();
+                            backtrackingMACSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingMACThread.getInstance();
 
                             geneticThread.join();
                             geneticSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = geneticThread.getInstance();

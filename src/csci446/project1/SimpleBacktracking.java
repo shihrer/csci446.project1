@@ -49,27 +49,48 @@ public class SimpleBacktracking {
         if(currentPoint == points.length) {
             //This is out of bounds, which means we've colored all the points!
             // We're done here.
+            if(Main.verbose) {
+                System.out.println("\t\tSimpleBacktracking: Reached base case.");
+            }
             return true;
         }
         // Attempt to color this point.
         for(int color = 1; color <= this.numColors; color++) {
+            if(Main.verbose) {
+                System.out.println("\t\tSimpleBacktracking: Checking P" + currentPoint + " for possible colors.");
+            }
             if(canColor(currentPoint, color)) {
                 // We can color this point. Lets do it.
+                if(Main.verbose) {
+                    System.out.println("\t\tSimpleBacktracking: Coloring P" + currentPoint + " color " + color);
+                }
                 colors[currentPoint] = color;
                 iterations++;
                 if(iterations >= 40000) {
                     //Too many iterations.
+                    if(Main.verbose) {
+                        System.out.println("\t\tSimpleBacktracking: Reached 40000 iterations. Giving up.");
+                    }
                     return false;
                 }
                 // Try to color the next point in the list.
                 if(graphColoringRecursive(currentPoint + 1)) {
                     return true;
                 }
+                if(Main.verbose) {
+                    System.out.println("\t\tSimpleBacktracking: Couldn't color under P" + currentPoint + " with color " + color + ". Trying a new one.");
+                }
                 // It failed to color. :( Lets remove our color because this is a bad path
                 colors[currentPoint] = 0;
             }
+            if(Main.verbose) {
+                System.out.println("\t\tSimpleBacktracking: P" + currentPoint + " can't be colored with color " + color + ".");
+            }
         }
         // Ran out of colors to try. We've failed. Hopefully our friends higher in the chain can color the graph.
+        if(Main.verbose) {
+            System.out.println("\t\tSimpleBacktracking: Out of colors to try at P" + currentPoint + ". Backtracking.");
+        }
         return false;
     }
 

@@ -1,5 +1,7 @@
 package csci446.project1.GraphSystem;
 
+import csci446.project1.Main;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +18,6 @@ public class Graph implements Serializable {
     public Graph(int points) {
         //Create an empty array to store the points in the graph.
         this.points = new Point[points];
-
         float[] xValues = new float[points];
         float[] yValues = new float[points];
 
@@ -46,12 +47,17 @@ public class Graph implements Serializable {
         }
 
         //Print out the points and initialize them.
-        //System.out.println("Points Created:");
+
+        if(Main.verbose) {
+            System.out.println("Graph: Points Created:");
+        }
         for (int i = 0; i < this.points.length; i++) {
             this.points[i].setup();
-        //    System.out.print("P" + i + ": ");
-        //    this.points[i].printPoint();
-        //    System.out.println();
+            if(Main.verbose) {
+                System.out.print("\tP" + i + ": ");
+                this.points[i].printPoint();
+                System.out.println();
+            }
         }
 
         //Create connections
@@ -74,13 +80,14 @@ public class Graph implements Serializable {
             this.adjacencyMatrix[connection.point1.id][connection.point2.id] = true;
             this.adjacencyMatrix[connection.point2.id][connection.point1.id] = true;
         }
-
-        //System.out.println("Connections Created:");
-        //for (int i = 0; i < this.connections.size(); i++) {
-        //    System.out.print("C" + i + ": P" + this.connections.get(i).point1.id);
-        //    System.out.print(" connects to P" + this.connections.get(i).point2.id);
-        //    System.out.println();
-        //}
+        if(Main.verbose) {
+            System.out.println("Graph: Connections Created:");
+            for (int i = 0; i < this.connections.size(); i++) {
+                System.out.print("\tC" + i + ": P" + this.connections.get(i).point1.id);
+                System.out.print(" connects to P" + this.connections.get(i).point2.id);
+                System.out.println();
+            }
+        }
         System.out.println("Graph: Generated graph with " + points + " points.");
     }
     

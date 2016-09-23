@@ -7,7 +7,7 @@ import csci446.project1.GraphSystem.Graph;
  */
 public class BacktrackingMACThread extends Thread {
 
-    public volatile SimpleBacktracking instance;
+    public volatile BacktrackingMAC instance;
 
     public int testSet;
     public int colors;
@@ -26,11 +26,11 @@ public class BacktrackingMACThread extends Thread {
     }
 
     public void run() {
-        instance = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
+        instance = new BacktrackingMAC(graphs[testSet * tryNum - 1], colors);
         this.terminated = true;
     }
 
-    public SimpleBacktracking getInstance() {
+    public BacktrackingMAC getInstance() {
         return instance;
     }
 }
