@@ -14,6 +14,8 @@ class Genetic {
     private Random randomGenerator;
     private List<Chromosome> population;
     private Chromosome winner;
+    public boolean success = false;
+    public int iterations = 0;
 
     Genetic(Graph graph, int k) {
         this.graph = graph;
@@ -24,21 +26,28 @@ class Genetic {
     }
     private void run()
     {
-        generateRandomPopulation(300);
-        int count = 0;
-        while(!foundSolution()) {
+        generateRandomPopulation(1000);
+
+        while(!foundSolution() && this.iterations < 1000) {
             tournament();
             breedPopulation();
-            count++;
+            this.iterations++;
         }
-        System.out.println("Found solution in " + count + " iterations.");
-        System.out.println("Solution: " + winner.getChromosome());
+
+        if(success) {
+            System.out.println("Found solution in " + this.iterations + " iterations.");
+            System.out.println("Solution: " + winner.getChromosome());
+        }
+        else{
+            System.out.println("No solution found.");
+        }
     }
 
     private boolean foundSolution() {
         for(Chromosome candidate : population){
             if(candidate.getFitness() == 0){
                 winner = candidate;
+                this.success = true;
                 return true;
             }
         }
