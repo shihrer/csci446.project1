@@ -12,7 +12,7 @@ public class BacktrackingMAC {
     int iterations = 0;
 
     BacktrackingMAC(Graph graph, int k){
-        //Setup stacks
+        //Initialize coloring and domain tables
         int[] coloring = new int[graph.points.length];
         boolean[][] domains = new boolean[graph.points.length][k];
 
@@ -56,8 +56,15 @@ public class BacktrackingMAC {
                         domains[vertex][x] = false;
                 }
                 // Update arc consistency
-                if(!makeArcConsistent(vertex, domains))
+                if(!makeArcConsistent(vertex, domains)) {
+                    coloring[vertex] = -1;
+
+                    for(int x = 0; x < k; x++){
+                        if(x != color)
+                            domains[vertex][x] = true;
+                    }
                     return false;
+                }
 
                 if (isSolved(domains) || colorGraph(vertex + 1, coloring.clone(), copyDomains(domains)))
                     return true;
@@ -68,7 +75,9 @@ public class BacktrackingMAC {
         return false;
     }
 
+    // Check to see if the domain table has a solved path
     private boolean isSolved(boolean[][] domains) {
+        // Just look through each domain and see if each row has 1 possible domain
         for(boolean[] domain: domains){
             int domainCount = 0;
             for(boolean aDomain : domain){
@@ -95,6 +104,8 @@ public class BacktrackingMAC {
 
     // Implments AC3 algorithm
     private boolean makeArcConsistent(int vertex, boolean[][] domains){
+        // Temp domains, don't change real ones unless path is good
+        boolean[][] tempDomains = copyDomains(domains);
         //Examine each arc
         LinkedList<Integer> arcQueue = new LinkedList<>();
         HashSet<Integer> visited = new HashSet<>();
@@ -110,8 +121,11 @@ public class BacktrackingMAC {
                             if (domains[connectedPoint.id][x])
                                 isEmpty = false;
                         }
-                        if (isEmpty)
+                        // Bad path
+                        if (isEmpty) {
+                            domains = tempDomains;
                             return false;
+                        }
 
                         for (Point neighbors : graph.points[connectedPoint.id].connectedPoints) {
                             if (!visited.contains(neighbors.id))
