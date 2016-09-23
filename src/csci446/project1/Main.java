@@ -11,7 +11,7 @@ public class Main {
         // Basic Settings IF LOADING THESE MUSSSSSSSSSSSSSSSSSSSST MATCH THE GENERATED DATA.
         int startingColors = 3; //k
         int endingColors = 4;
-        int numberOfTries = 2;
+        int numberOfTries = 1; //Broken when loading. Only use 1 if loading.
         int startingGraphSize = 10;
         int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
         int graphIncrementCount = 10;
@@ -19,19 +19,19 @@ public class Main {
         boolean[] skipTestSets = new boolean[graphIncrementCount + 1];
         //SET ANY TESTS YOU WANT TO SKIP TO TRUE
         //There is no test 0.
-        skipTestSets[1] = true;
-        skipTestSets[2] = true;
+        skipTestSets[1] = false;
+        skipTestSets[2] = false;
         skipTestSets[3] = false;
-        skipTestSets[4] = true;
-        skipTestSets[5] = true;
-        skipTestSets[6] = true;
-        skipTestSets[7] = true;
-        skipTestSets[8] = true;
-        skipTestSets[9] = true;
-        skipTestSets[10] = true;
+        skipTestSets[4] = false;
+        skipTestSets[5] = false;
+        skipTestSets[6] = false;
+        skipTestSets[7] = false;
+        skipTestSets[8] = false;
+        skipTestSets[9] = false;
+        skipTestSets[10] = false;
 
-        boolean multithreaded = false;
-        boolean loadGraphs = true;
+        boolean multithreaded = true;
+        boolean loadGraphs = false;
         boolean writeGraphs = false;
 
         Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
