@@ -1,0 +1,144 @@
+Final Results
+
+Test Graphs With 3 Colors:
+	10 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 530
+			SimpleBacktracking: Failure, Iterations: 333
+			BacktrackingWithForwardChecking: Failure, Iterations: 221
+			Backtracking MAC:: Failure, Iterations: 33
+			Genetic Algorithm: Failure, Iterations: 2000
+	20 points:
+		Try 1:
+			MinConflict: Success, Iterations: 11
+			SimpleBacktracking: Success, Iterations: 10
+			BacktrackingWithForwardChecking: Success, Iterations: 10
+			Backtracking MAC: Success, Iterations: 6
+			Genetic Algorithm: Success, Iterations: 1
+	30 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 856
+			SimpleBacktracking: Failure, Iterations: 40007
+			BacktrackingWithForwardChecking: Failure, Iterations: 40006
+			Backtracking MAC: Success, Iterations: 72
+			Genetic Algorithm: Failure, Iterations: 2000
+	40 points:
+		Try 1:
+			MinConflict: Success, Iterations: 21
+			SimpleBacktracking: Success, Iterations: 20
+			BacktrackingWithForwardChecking: Success, Iterations: 20
+			Backtracking MAC: Success, Iterations: 20
+			Genetic Algorithm: Success, Iterations: 6
+	50 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 952
+			SimpleBacktracking: Failure, Iterations: 40017
+			BacktrackingWithForwardChecking: Failure, Iterations: 40013
+			Backtracking MAC:: Failure, Iterations: 1914
+			Genetic Algorithm: Failure, Iterations: 2000
+	60 points:
+		Try 1:
+			MinConflict: Success, Iterations: 32
+			SimpleBacktracking: Success, Iterations: 30
+			BacktrackingWithForwardChecking: Success, Iterations: 30
+			Backtracking MAC: Success, Iterations: 24
+			Genetic Algorithm: Success, Iterations: 9
+	70 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 908
+			SimpleBacktracking: Failure, Iterations: 40008
+			BacktrackingWithForwardChecking: Failure, Iterations: 40008
+			Backtracking MAC:: Failure, Iterations: 40006
+			Genetic Algorithm: Failure, Iterations: 2000
+	80 points:
+		Try 1:
+			MinConflict: Success, Iterations: 46
+			SimpleBacktracking: Success, Iterations: 303
+			BacktrackingWithForwardChecking: Success, Iterations: 63
+			Backtracking MAC: Success, Iterations: 40
+			Genetic Algorithm: Success, Iterations: 14
+	90 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 1210
+			SimpleBacktracking: Failure, Iterations: 40021
+			BacktrackingWithForwardChecking: Failure, Iterations: 40021
+			Backtracking MAC:: Failure, Iterations: 3828
+			Genetic Algorithm: Failure, Iterations: 2000
+	100 points:
+		Try 1:
+			MinConflict: Success, Iterations: 60
+			SimpleBacktracking: Failure, Iterations: 40034
+			BacktrackingWithForwardChecking: Success, Iterations: 52
+			Backtracking MAC: Success, Iterations: 48
+			Genetic Algorithm: Success, Iterations: 32
+Test Graphs With 4 Colors:
+	10 points:
+		Try 1:
+			MinConflict: Success, Iterations: 11
+			SimpleBacktracking: Success, Iterations: 10
+			BacktrackingWithForwardChecking: Success, Iterations: 10
+			Backtracking MAC: Success, Iterations: 6
+			Genetic Algorithm: Success, Iterations: 1
+	20 points:
+		Try 1:
+			MinConflict: Success, Iterations: 21
+			SimpleBacktracking: Success, Iterations: 20
+			BacktrackingWithForwardChecking: Success, Iterations: 20
+			Backtracking MAC: Success, Iterations: 20
+			Genetic Algorithm: Success, Iterations: 6
+	30 points:
+		Try 1:
+			MinConflict: Success, Iterations: 32
+			SimpleBacktracking: Success, Iterations: 30
+			BacktrackingWithForwardChecking: Success, Iterations: 30
+			Backtracking MAC: Success, Iterations: 24
+			Genetic Algorithm: Success, Iterations: 9
+	40 points:
+		Try 1:
+			MinConflict: Success, Iterations: 46
+			SimpleBacktracking: Success, Iterations: 303
+			BacktrackingWithForwardChecking: Success, Iterations: 63
+			Backtracking MAC: Success, Iterations: 40
+			Genetic Algorithm: Success, Iterations: 14
+	50 points:
+		Try 1:
+			MinConflict: Success, Iterations: 60
+			SimpleBacktracking: Failure, Iterations: 40034
+			BacktrackingWithForwardChecking: Success, Iterations: 52
+			Backtracking MAC: Success, Iterations: 48
+			Genetic Algorithm: Success, Iterations: 32
+	60 points:
+		Try 1:
+			MinConflict: Success, Iterations: 72
+			SimpleBacktracking: Failure, Iterations: 40029
+			BacktrackingWithForwardChecking: Failure, Iterations: 40028
+			Backtracking MAC: Success, Iterations: 60
+			Genetic Algorithm: Success, Iterations: 30
+	70 points:
+		Try 1:
+			MinConflict: Success, Iterations: 76
+			SimpleBacktracking: Success, Iterations: 8139
+			BacktrackingWithForwardChecking: Success, Iterations: 118
+			Backtracking MAC: Success, Iterations: 70
+			Genetic Algorithm: Success, Iterations: 730
+	80 points:
+		Try 1:
+			MinConflict: Success, Iterations: 102
+			SimpleBacktracking: Success, Iterations: 703
+			BacktrackingWithForwardChecking: Success, Iterations: 105
+			Backtracking MAC: Success, Iterations: 81
+			Genetic Algorithm: Failure, Iterations: 2000
+	90 points:
+		Try 1:
+			MinConflict: Failure, Iterations: 662
+			SimpleBacktracking: Failure, Iterations: 40053
+			BacktrackingWithForwardChecking: Failure, Iterations: 40053
+			Backtracking MAC:: Failure, Iterations: 40027
+			Genetic Algorithm: Success, Iterations: 123
+	100 points:
+		Try 1:
+			MinConflict: Success, Iterations: 123
+			SimpleBacktracking: Failure, Iterations: 40058
+			BacktrackingWithForwardChecking: Success, Iterations: 128
+			Backtracking MAC: Success, Iterations: 99
+			Genetic Algorithm: Success, Iterations: 85
