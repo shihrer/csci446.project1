@@ -26,9 +26,9 @@ class Genetic {
     }
     private void run()
     {
-        generateRandomPopulation(1000);
+        generateRandomPopulation(graph.points.length * 100);
 
-        while(!foundSolution() && this.iterations < 1000) {
+        while(!foundSolution() && this.iterations < graph.points.length * 100) {
             tournament();
             breedPopulation();
             this.iterations++;
@@ -36,16 +36,16 @@ class Genetic {
 
         if(success) {
             System.out.println("Found solution in " + this.iterations + " iterations.");
-            System.out.println("Solution: " + winner.getChromosome());
+            System.out.println("Solution: " + winner.toString());
         }
         else{
-            System.out.println("No solution found.");
+            System.out.println("No solution found in " + this.iterations + " iterations.");
         }
     }
 
     private boolean foundSolution() {
         for(Chromosome candidate : population){
-            if(candidate.getFitness() == 0){
+            if(candidate.getConflicts() == 0) {
                 winner = candidate;
                 this.success = true;
                 return true;
@@ -62,14 +62,18 @@ class Genetic {
         }
     }
     private Chromosome createRandomChromosome() {
-        StringBuilder chromosome = new StringBuilder();
-        for (Point point : graph.points) chromosome.append(randomGenerator.nextInt(k));
+        int[] chromosome = new int[graph.points.length];
+        for(int i = 0; i < chromosome.length; i++){
+            chromosome[i] = randomGenerator.nextInt(k);
+        }
 
-        return new Chromosome(chromosome.toString());
+        return new Chromosome(chromosome);
     }
     private void fitness(Chromosome chromosome) {
         List<Point> visited = new ArrayList<>();
         int conflicts = 0;
+        // Tracks how many nodes without conflicts a candidate has
+        int chainCount = 0;
         // Check for conflicts
         // Chromosome applies to colors in the graph.points array
         // Check for conflicts
@@ -82,7 +86,9 @@ class Genetic {
             if(!visited.contains(vertex)) {
                 visited.add(vertex);
                 //label vertex as visited
-                vertex.connectedPoints.forEach(nodeStack::push);
+                for(Point point : vertex.connectedPoints)
+                    nodeStack.push(point);
+
                 for(Point connectedPoint : vertex.connectedPoints){
                     if(chromosome.getNodeColor(vertex.id) == chromosome.getNodeColor(connectedPoint.id) && !visited.contains(connectedPoint))
                     {
@@ -92,7 +98,8 @@ class Genetic {
             }
         }
 
-        chromosome.setFitness(conflicts);
+        chromosome.setConflicts(conflicts);
+        chromosome.setNodesWithoutConflicts(chainCount);
     }
 
     private void tournament() {
@@ -108,7 +115,7 @@ class Genetic {
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
             // Compare fitness of two chromosomes.  Throw out the loser.
-            if (c1.getFitness() > c2.getFitness())
+            if (c1.getConflicts() > c2.getConflicts())
                 population.add(c2);
             else
                 population.add(c1);
@@ -135,13 +142,25 @@ class Genetic {
     }
 
     private List<Chromosome> crossover(Chromosome c1, Chromosome c2){
-        int crossoverPoint = randomGenerator.nextInt(c1.getChromosome().length());
+        int crossoverPoint = randomGenerator.nextInt(c1.getChromosome().length);
         List<Chromosome> family = new ArrayList<>();
         family.add(c1);
         family.add(c2);
         //This creates two offspring
-        String child1 = c1.getChromosome().substring(0, crossoverPoint).concat(c2.getChromosome().substring(crossoverPoint, c2.getChromosome().length()));
-        String child2 = c2.getChromosome().substring(0, crossoverPoint).concat(c1.getChromosome().substring(crossoverPoint, c1.getChromosome().length()));;
+        int[] p1 = c1.getChromosome();
+        int[] p2 = c2.getChromosome();
+        int[] child1 = new int[p1.length];
+        int[] child2 = new int[p1.length];
+        for(int i = 0; i < crossoverPoint; i++) {
+            child1[i] = p1[i];
+            child2[i] = p2[i];
+        }
+        for(int i = crossoverPoint; i < c1.getChromosome().length; i++){
+            child1[i] = p2[i];
+            child2[i] = p1[i];
+
+        }
+
         Chromosome childChromosome1 = new Chromosome(child1);
         Chromosome childChromosome2 = new Chromosome(child2);
         fitness(childChromosome1);
