@@ -28,6 +28,9 @@ public class Chromosome {
     public int[] getChromosome(){
         return chromosome;
     }
+    public void setChromosome(int[] chromosome){
+        this.chromosome = chromosome;
+    }
 
     public int getNodeColor(int id) {
         return chromosome[id];

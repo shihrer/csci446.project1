@@ -35,11 +35,11 @@ class Genetic {
         }
 
         if(success) {
-            System.out.println("Found solution in " + this.iterations + " iterations.");
-            System.out.println("Solution: " + winner.toString());
+            System.out.println("\n\t\tGenetic Algorithm: Found solution in " + this.iterations + " iterations.");
+            System.out.println("\t\tSolution: " + winner.toString());
         }
         else{
-            System.out.println("No solution found in " + this.iterations + " iterations.");
+            System.out.println("\n\t\tGenetic Algorithm: No solution found in " + this.iterations + " iterations.");
         }
     }
 
@@ -78,23 +78,10 @@ class Genetic {
         // Chromosome applies to colors in the graph.points array
         // Check for conflicts
         // Return count of conflicts
-        Stack<Point> nodeStack = new Stack<>();
-        nodeStack.push(graph.points[0]);
-        while(!nodeStack.isEmpty()) {
-            Point vertex = nodeStack.pop();
-            //check if I've been already
-            if(!visited.contains(vertex)) {
-                visited.add(vertex);
-                //label vertex as visited
-                for(Point point : vertex.connectedPoints)
-                    nodeStack.push(point);
-
-                for(Point connectedPoint : vertex.connectedPoints){
-                    if(chromosome.getNodeColor(vertex.id) == chromosome.getNodeColor(connectedPoint.id) && !visited.contains(connectedPoint))
-                    {
-                        conflicts++;
-                    }
-                }
+        for(Point point : graph.points){
+            if(!canColor(point, chromosome.getNodeColor(point.id), chromosome))
+            {
+                conflicts++;
             }
         }
 
@@ -165,9 +152,48 @@ class Genetic {
         Chromosome childChromosome2 = new Chromosome(child2);
         fitness(childChromosome1);
         fitness(childChromosome2);
+
+        //Mutate a random offspring
+        int randomOffspring = randomGenerator.nextInt(2);
+        if(randomOffspring == 0)
+            mutate(childChromosome1);
+        else
+            mutate(childChromosome2);
+
         family.add(childChromosome1);
         family.add(childChromosome2);
 
         return family;
+    }
+
+    private void mutate(Chromosome chromosome){
+        int[] sequence = chromosome.getChromosome();
+        for(Point point : graph.points){
+            if(!canColor(point, sequence[point.id], chromosome)){
+                //pick random color that's not current
+                boolean colorChanged = false;
+                while(!colorChanged){
+                    int newColor = randomGenerator.nextInt(3);
+                    if(newColor != sequence[point.id]){
+                        sequence[point.id] = newColor;
+                        colorChanged = true;
+                    }
+                }
+
+            }
+        }
+
+        chromosome.setChromosome(sequence);
+        fitness(chromosome);
+    }
+
+    private boolean canColor(Point point, int color, Chromosome chromosome){
+        for(Point connectedPoint : point.connectedPoints){
+            if(chromosome.getNodeColor(connectedPoint.id) == color) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
