@@ -45,12 +45,12 @@ public class Graph {
         }
 
         //Print out the points and initialize them.
-        System.out.println("Points Created:");
+        //System.out.println("Points Created:");
         for (int i = 0; i < this.points.length; i++) {
             this.points[i].setup();
-            System.out.print("P" + i + ": ");
-            this.points[i].printPoint();
-            System.out.println();
+        //    System.out.print("P" + i + ": ");
+        //    this.points[i].printPoint();
+        //    System.out.println();
         }
 
         //Create connections
@@ -74,13 +74,13 @@ public class Graph {
             this.adjacencyMatrix[connection.point2.id][connection.point1.id] = true;
         }
 
-        System.out.println("Connections Created:");
-        for (int i = 0; i < this.connections.size(); i++) {
-            System.out.print("C" + i + ": P" + this.connections.get(i).point1.id);
-            System.out.print(" connects to P" + this.connections.get(i).point2.id);
-            System.out.println();
-        }
-        
+        //System.out.println("Connections Created:");
+        //for (int i = 0; i < this.connections.size(); i++) {
+        //    System.out.print("C" + i + ": P" + this.connections.get(i).point1.id);
+        //    System.out.print(" connects to P" + this.connections.get(i).point2.id);
+        //    System.out.println();
+        //}
+        System.out.println("Graph: Generated graph with " + points + " points.");
     }
     
     //added returns for the array and arraylist so I could use them in MinConflict -Lukas

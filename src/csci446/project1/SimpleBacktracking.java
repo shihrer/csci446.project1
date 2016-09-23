@@ -8,6 +8,9 @@ import csci446.project1.GraphSystem.Point;
  */
 public class SimpleBacktracking {
 
+    public boolean success;
+
+    public int iterations;
     private int[] colors;
 
     private int numColors;
@@ -30,12 +33,14 @@ public class SimpleBacktracking {
 
         if(result) {
             System.out.println();
-            System.out.println("SimpleBacktracking: Successfully found solution with " + numColors + " colors.");
-            System.out.println();
-            this.printColors();
+            success = true;
+            System.out.println("\tSimpleBacktracking: Successfully found solution with " + numColors + " colors.");
+            //System.out.println();
+            //this.printColors();
         } else {
             System.out.println();
-            System.out.println("SimpleBacktracking: Failed to find solution with " + numColors + " colors.");
+            success = false;
+            System.out.println("\tSimpleBacktracking: Failed to find solution with " + numColors + " colors.");
         }
     }
 
@@ -51,6 +56,7 @@ public class SimpleBacktracking {
             if(canColor(currentPoint, color)) {
                 // We can color this point. Lets do it.
                 colors[currentPoint] = color;
+                iterations++;
                 // Try to color the next point in the list.
                 if(graphColoringRecursive(currentPoint + 1)) {
                     return true;

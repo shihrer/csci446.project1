@@ -8,6 +8,9 @@ import csci446.project1.GraphSystem.Point;
  */
 public class BacktrackingWithForwardChecking {
 
+    public int iterations;
+    public boolean success;
+
     private int[] colors;
 
     private int numColors;
@@ -35,12 +38,14 @@ public class BacktrackingWithForwardChecking {
 
         if(result) {
             System.out.println();
-            System.out.println("BacktrackingWithForwardChecking: Successfully found solution with " + numColors + " colors.");
+            success = true;
+            System.out.println("\tBacktrackingWithForwardChecking: Successfully found solution with " + numColors + " colors.");
             System.out.println();
-            this.printColors();
+            //this.printColors();
         } else {
             System.out.println();
-            System.out.println("BacktrackingWithForwardChecking: Failed to find solution with " + numColors + " colors.");
+            success = false;
+            System.out.println("\tBacktrackingWithForwardChecking: Failed to find solution with " + numColors + " colors.");
         }
     }
 
@@ -56,6 +61,7 @@ public class BacktrackingWithForwardChecking {
             if(canColor(currentPoint, color)) {
                 // We can color this point. Lets do it.
                 colors[currentPoint] = color;
+                iterations++;
                 // Forwardchecking : Block off the color for adjacent points.
                 blockedColors[currentPoint][color - 1] = true; //Block this color for ourselves, just to say we chose it.
                 for ( Point point: this.points[currentPoint].connectedPoints) {

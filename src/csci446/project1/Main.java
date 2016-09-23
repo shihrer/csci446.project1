@@ -7,18 +7,56 @@ public class Main {
     public static void main(String[] args) {
 
         // Basic Settings
-        int numberOfPoints = 10;
-        int numberOfColors = 3; //k
-        
-        // Create a graph.
-	    Graph graph = new Graph(numberOfPoints);
+        int startingColors = 3; //k
+        int endingColors = 4;
+        int numberOfTries = 5;
+        int startingGraphSize = 10;
+        int graphIncrementSize = 2; //Normally 100, but it will take forever for backtracking.
+        int graphIncrementCount = 10;
 
-        //runs graph coloring with min conflict
-        MinConflict minConflict = new MinConflict(numberOfPoints, numberOfColors, graph.points, graph.connections);
-        //run graph coloring with simple backtracking
-        SimpleBacktracking simpleBacktracking = new SimpleBacktracking(numberOfColors, graph);
-        //run graph coloring with forward-checking
-        BacktrackingWithForwardChecking backtrackingWithForwardChecking = new BacktrackingWithForwardChecking(numberOfColors, graph);
+        Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
+
+        MinConflict[] minConflictSolutions = new MinConflict[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
+        SimpleBacktracking[] simpleBacktrackingSolutions = new SimpleBacktracking[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
+        BacktrackingWithForwardChecking[] backtrackingWithForwardCheckingSolutions = new BacktrackingWithForwardChecking[graphIncrementCount*numberOfTries*(endingColors - startingColors + 1)];
+
+        // Run all the tests, storing their graphs and results.
+
+        for (int colors = startingColors; colors <= endingColors; colors++) {
+            for (int testSet = 1; testSet <= graphIncrementCount; testSet++) {
+                for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
+                    graphs[testSet * tryNum - 1] = new Graph(startingGraphSize + ((testSet - 1) * graphIncrementSize));
+                    minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new MinConflict(graphs[testSet * tryNum - 1].points.length, colors, graphs[testSet * tryNum - 1].points, graphs[testSet * tryNum - 1].connections);
+                    simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
+                    backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new BacktrackingWithForwardChecking(colors, graphs[testSet * tryNum - 1]);
+                }
+            }
+        }
+        //Print Solutions
+        System.out.println("\nFinal Results\n");
+        for (int colors = startingColors; colors <= endingColors; colors++) {
+            System.out.println("Test Graphs With " + colors + " Colors:");
+            for (int testSet = 1; testSet <= graphIncrementCount; testSet++) {
+                System.out.println("\t" + (startingGraphSize + (testSet - 1) * graphIncrementSize) + " points:");
+                for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
+                    System.out.println("\t\tTry " + tryNum + ":");
+                    if(minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                        System.out.println("\t\t\tMinConflict: Success, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].itterations);
+                    } else {
+                        System.out.println("\t\t\tMinConflict: Failure, Iterations: " + minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].itterations);
+                    }
+                    if(simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                        System.out.println("\t\t\tSimpleBacktracking: Success, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                    } else {
+                        System.out.println("\t\t\tSimpleBacktracking: Failure, Iterations: " + simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                    }
+                    if(backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].success) {
+                        System.out.println("\t\t\tBacktrackingWithForwardChecking: Success, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                    } else {
+                        System.out.println("\t\t\tBacktrackingWithForwardChecking: Failure, Iterations: " + backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1].iterations);
+                    }
+                }
+            }
+        }
     }
-    
 }
