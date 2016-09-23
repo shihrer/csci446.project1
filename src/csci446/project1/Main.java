@@ -11,8 +11,9 @@ public class Main {
         int endingColors = 4;
         int numberOfTries = 2;
         int startingGraphSize = 10;
-        int graphIncrementSize = 2; //Normally 10, but it will take forever for backtracking.
+        int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
         int graphIncrementCount = 10;
+        boolean multithreaded = true;
 
         Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
 
@@ -26,21 +27,27 @@ public class Main {
             for (int testSet = 1; testSet <= graphIncrementCount; testSet++) {
                 for (int tryNum = 1; tryNum <= numberOfTries; tryNum++) {
                     graphs[testSet * tryNum - 1] = new Graph(startingGraphSize + ((testSet - 1) * graphIncrementSize));
-                    MinConflictThread minConflictThread = new MinConflictThread(testSet, colors, startingColors, tryNum, graphs);
-                    minConflictThread.run();
-                    SimpleBacktrackingThread simpleBacktrackingThread = new SimpleBacktrackingThread(testSet, colors, startingColors, tryNum, graphs);
-                    simpleBacktrackingThread.run();
-                    BacktrackingWithForwardCheckingThread backtrackingWithForwardCheckingThread = new BacktrackingWithForwardCheckingThread(testSet, colors, startingColors, tryNum, graphs);
-                    backtrackingWithForwardCheckingThread.run();
+                    if(multithreaded) {
+                        MinConflictThread minConflictThread = new MinConflictThread(testSet, colors, startingColors, tryNum, graphs);
+                        minConflictThread.run();
+                        SimpleBacktrackingThread simpleBacktrackingThread = new SimpleBacktrackingThread(testSet, colors, startingColors, tryNum, graphs);
+                        simpleBacktrackingThread.run();
+                        BacktrackingWithForwardCheckingThread backtrackingWithForwardCheckingThread = new BacktrackingWithForwardCheckingThread(testSet, colors, startingColors, tryNum, graphs);
+                        backtrackingWithForwardCheckingThread.run();
 
-                    minConflictThread.join();
-                    minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = minConflictThread.getInstance();
+                        minConflictThread.join();
+                        minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = minConflictThread.getInstance();
 
-                    simpleBacktrackingThread.join();
-                    simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = simpleBacktrackingThread.getInstance();
+                        simpleBacktrackingThread.join();
+                        simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = simpleBacktrackingThread.getInstance();
 
-                    backtrackingWithForwardCheckingThread.join();
-                    backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
+                        backtrackingWithForwardCheckingThread.join();
+                        backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = backtrackingWithForwardCheckingThread.getInstance();
+                    } else {
+                        minConflictSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new MinConflict(graphs[testSet * tryNum - 1].points.length, colors, graphs[testSet * tryNum - 1].points, graphs[testSet * tryNum - 1].connections);
+                        simpleBacktrackingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new SimpleBacktracking(colors, graphs[testSet * tryNum - 1]);
+                        backtrackingWithForwardCheckingSolutions[testSet * (colors - startingColors + 1) * tryNum - 1] = new BacktrackingWithForwardChecking(colors, graphs[testSet * tryNum - 1]);
+                    }
                 }
             }
         }
