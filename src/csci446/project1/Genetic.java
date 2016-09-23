@@ -26,7 +26,7 @@ class Genetic {
     }
     private void run()
     {
-        generateRandomPopulation(1000);
+        generateRandomPopulation(100);
 
         while(!foundSolution() && this.iterations < 2000) {
             tournament();
