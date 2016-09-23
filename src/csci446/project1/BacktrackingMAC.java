@@ -5,17 +5,18 @@ import csci446.project1.GraphSystem.Point;
 
 import java.util.*;
 
-public class BacktrackingMAC {
+class BacktrackingMAC {
     private Graph graph;
     private int k;
     boolean success = false;
     int iterations = 0;
+    //Initialize coloring and domain tables
+    private int[] coloring;
+    private boolean[][] domains;
 
     BacktrackingMAC(Graph graph, int k){
-        //Initialize coloring and domain tables
-        int[] coloring = new int[graph.points.length];
-        boolean[][] domains = new boolean[graph.points.length][k];
-
+        coloring = new int[graph.points.length];
+        domains = new boolean[graph.points.length][k];
         this.graph = graph;
         this.k = k;
 
@@ -30,7 +31,7 @@ public class BacktrackingMAC {
             }
         }
 
-        success = colorGraph(0, coloring.clone(), domains.clone());
+        success = colorGraph(0);
 
         if(success){
             System.out.println("\n\tBacktracking with MAC: Successfully found solution with " + k + " colors.");
@@ -39,44 +40,86 @@ public class BacktrackingMAC {
         }
     }
 
-    private boolean colorGraph(int vertex, int[] coloring, boolean[][] domains){
-        if(vertex == graph.points.length)
+    private boolean colorGraph(int vertex){
+        //Terminating case
+        if(isSolved(vertex))
             return true;
-        iterations++;
-        if(iterations >= 40000) {
-            return false;
-        }
 
-        for(int color = 0; color < k; color++)
-        {
-            if(canColor(vertex, color, coloring)) {
+        // For each value in order domain values
+        for(int color = 0; color < k; color++) {
+            //Only color if it's in the domain
+            if (canColor(vertex, color)) {
+                //Set color
                 coloring[vertex] = color;
-                for(int x = 0; x < k; x++){
-                    if(x != color)
+
+                // Track iterations
+                iterations++;
+                if(iterations >= 40000) {
+                    return false;
+                }
+                //Set domain
+                for (int x = 0; x < k; x++) {
+                    if (x != color)
                         domains[vertex][x] = false;
                 }
                 // Update arc consistency
-                if(!makeArcConsistent(vertex, domains)) {
+                if (!makeArcConsistent()) {
                     coloring[vertex] = -1;
+                    //Reset domain
+                    coloring[vertex] = -1;
+                    restoreDomains();
+                } else {
+                    // Go deeper in search
+                    if(colorGraph(vertex + 1))
+                        return true;
 
-                    for(int x = 0; x < k; x++){
-                        if(x != color)
-                            domains[vertex][x] = true;
-                    }
-                    return false;
+                    // Last level didn't work, let's get ready for a new color
+                    coloring[vertex] = -1;
+                    restoreDomains();
                 }
-
-                if (isSolved(domains) || colorGraph(vertex + 1, coloring.clone(), copyDomains(domains)))
-                    return true;
-                else
-                    coloring[vertex] = -1;
             }
         }
         return false;
     }
+    //Attempts to restore the domains when we backtrack a color
+    private void restoreDomains(){
+        //Initial domain values
+        for(int i = 0; i < graph.points.length; i++){
+            for(int j=0; j < k; j++){
+                domains[i][j] = true;
+            }
+        }
+
+        // Set domains for colors already set
+        for(int i = 0; i < coloring.length; i++){
+            if(coloring[i] > -1){
+                for(int x = 0; x < domains[i].length; x++){
+                    if (x != coloring[i])
+                        domains[i][x] = false;
+                }
+            }
+        }
+        makeArcConsistent();
+
+    }
+    private boolean canColor(int point, int color) {
+        //Check if this color has been ruled out
+        if(!domains[point][color])
+            return false;
+        // Check each point connected to the point in question. If we've colored it the color "color" already, then
+        // return false.
+        for(Point checkPoint : graph.points[point].connectedPoints) {
+            if(coloring[checkPoint.id] == color) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     // Check to see if the domain table has a solved path
-    private boolean isSolved(boolean[][] domains) {
+    private boolean isSolved(int vertex) {
+        if(vertex == graph.points.length)
+            return true;
         // Just look through each domain and see if each row has 1 possible domain
         for(boolean[] domain: domains){
             int domainCount = 0;
@@ -90,32 +133,25 @@ public class BacktrackingMAC {
         return true;
     }
 
-    private boolean canColor(int vertex, int color, int[] coloring){
-        // Check each point connected to the point in question. If we've colored it the color "color" already, then
-        // return false.  Check the cspDomains to see if the color is a valid choice (forward checking).  Check the
-        // constraints as well.  If there are any adjacent nodes who only have one choice left.
-        for(Point checkPoint : graph.points[vertex].connectedPoints) {
-            if(coloring[checkPoint.id] == color) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     // Implments AC3 algorithm
-    private boolean makeArcConsistent(int vertex, boolean[][] domains){
+    private boolean makeArcConsistent(){
         // Temp domains, don't change real ones unless path is good
-        boolean[][] tempDomains = copyDomains(domains);
+//        boolean[][] tempDomains = copyDomains(domains);
         //Examine each arc
         LinkedList<Integer> arcQueue = new LinkedList<>();
         HashSet<Integer> visited = new HashSet<>();
-        arcQueue.push(vertex);
+        for(int i = 0; i < coloring.length; i++)
+        {
+            if(coloring[i] > -1)
+                arcQueue.push(i);
+        }
+
         while(!arcQueue.isEmpty()){
             int point = arcQueue.pop();
             if(!visited.contains(point)) {
                 visited.add(point);
                 for (Point connectedPoint : graph.points[point].connectedPoints) {
-                    if (removeInconsistentValues(point, connectedPoint.id, domains)) {
+                    if (removeInconsistentValues(point, connectedPoint.id)) {
                         boolean isEmpty = true;
                         for (int x = 0; x < domains[connectedPoint.id].length; x++) {
                             if (domains[connectedPoint.id][x])
@@ -123,7 +159,7 @@ public class BacktrackingMAC {
                         }
                         // Bad path
                         if (isEmpty) {
-                            domains = tempDomains;
+//                            domains = tempDomains;
                             return false;
                         }
 
@@ -139,10 +175,10 @@ public class BacktrackingMAC {
         return true;
     }
 
-    private boolean removeInconsistentValues(int p1, int p2, boolean[][] domains){
+    private boolean removeInconsistentValues(int p1, int p2){
         boolean removed = false;
         for(int x = 0; x < domains[p2].length; x++){
-            if(domains[p1][x] && !checkConstraints(x, p1, domains)){
+            if(domains[p1][x] && !checkConstraints(x, p1)){
                 domains[p2][x] = false;
                 removed = true;
             }
@@ -151,7 +187,7 @@ public class BacktrackingMAC {
         return removed;
     }
 
-    private boolean checkConstraints(int x, int p, boolean[][] domains) {
+    private boolean checkConstraints(int x, int p) {
         boolean isLegal = false;
         // Look for any value in p domain that is not equal to x
         for(int y = 0; y < domains[p].length; y++){
@@ -162,12 +198,12 @@ public class BacktrackingMAC {
         return isLegal;
     }
 
-    private boolean[][] copyDomains(boolean[][] domains){
-        boolean[][] copy = new boolean[domains.length][domains[0].length];
-        for(int i = 0; i < domains.length; i++){
-            System.arraycopy(domains[i], 0, copy[i], 0, domains[i].length);
-        }
-        return copy;
-    }
+//    private boolean[][] copyDomains(boolean[][] domains){
+//        boolean[][] copy = new boolean[domains.length][domains[0].length];
+//        for(int i = 0; i < domains.length; i++){
+//            System.arraycopy(domains[i], 0, copy[i], 0, domains[i].length);
+//        }
+//        return copy;
+//    }
 
 }
