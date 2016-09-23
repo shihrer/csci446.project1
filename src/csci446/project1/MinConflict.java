@@ -91,7 +91,7 @@ public class MinConflict {
                 timesColored ++;
             }            
             if(color[connectionsArray.get(i).point2.id] == 0 && color[connectionsArray.get(i).point1.id] != j){
-                //color[connectionsArray.get(i).point2.id] = j;
+                color[connectionsArray.get(i).point2.id] = j;
                 timesColored ++;
                 reColor(connectionsArray.get(i).point2.id);
                 
@@ -109,7 +109,7 @@ public class MinConflict {
     for(int i = 0; i < color.length; i ++){
             if(color[i] == 0){
                 timesColored ++;
-                reColor(i);
+                color[i] = numcolors;
 
         }
             checkAllCon();
@@ -134,7 +134,6 @@ public class MinConflict {
         mostConf();     //finds point with most conflicts
         checkAllCon();
         totalConf();    //finds total number of conflicts
-        System.out.print("P" + last + " was last reColored. Changing point. ");
         //To try and prevent loops, if the last point still has most conflicts, this loop finds another
         if(mostConf == last){
             for(int j = 0; j < connectionsArray.size(); j++ ){
@@ -282,9 +281,10 @@ public class MinConflict {
         //System.out.println(checkCon(color[pointID]));
         for(int i = 1; i <= numcolors; i++){ 
             last = pointID; //used to try an prevent loops
-            if(checkCon(pointID) == 0){ //breaks if is reColored to zero conflicts
-                break;
+            if(color[pointID] == 0){
+                color[pointID] = numcolors;
             }
+
             System.out.println("RECOLORING P" + pointID + " to " + i);
             color[pointID] = i;
             System.out.println("P" + pointID + " now has " + checkCon(pointID) + " conflicts");
@@ -294,15 +294,7 @@ public class MinConflict {
             if(checkCon(pointID) < temp){
                 break;
             }
-            if(checkCon(pointID) == temp){
-                for(int j = 0; i < connectionsArray.size(); j++){
-                if(connectionsArray.get(j).point1.id == pointID){
-                    reColor(connectionsArray.get(j).point2.id);
-                }
-                if(connectionsArray.get(j).point2.id == pointID){
-                    reColor(connectionsArray.get(j).point1.id);
-                }
             }
         }
     }
-}}
+
