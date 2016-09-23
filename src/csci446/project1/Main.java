@@ -13,7 +13,7 @@ public class Main {
         int startingGraphSize = 10;
         int graphIncrementSize = 10; //Normally 10, but it will take forever for backtracking.
         int graphIncrementCount = 10;
-        boolean multithreaded = true;
+        boolean multithreaded = false;
 
         Graph[] graphs = new Graph[graphIncrementCount*numberOfTries];
 
