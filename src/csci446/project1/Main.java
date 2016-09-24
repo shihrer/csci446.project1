@@ -6,17 +6,17 @@ import java.io.*;
 
 public class Main {
 
-    public static final boolean verbose = false;
+    public static final boolean verbose = true;
 
     public static void main(String[] args) throws InterruptedException {
 
         // Basic Settings IF LOADING THESE MUSSSSSSSSSSSSSSSSSSSST MATCH THE GENERATED DATA.
         int startingColors = 3; //k
         int endingColors = 4;
-        int numberOfTries = 5;
+        int numberOfTries = 1;
         int startingGraphSize = 10;
         int graphIncrementSize = 10;
-        int graphIncrementCount = 10;
+        int graphIncrementCount = 1;
 
         boolean[] skipTestSets = new boolean[graphIncrementCount + 1];
         //SET ANY TESTS YOU WANT TO SKIP TO TRUE
@@ -33,7 +33,7 @@ public class Main {
         //skipTestSets[10] = true;
 
         boolean multithreaded = false;
-        boolean loadGraphs = true;
+        boolean loadGraphs = false;
         boolean writeGraphs = false;
 
         Graph[] graphs = new Graph[graphIncrementCount * numberOfTries];

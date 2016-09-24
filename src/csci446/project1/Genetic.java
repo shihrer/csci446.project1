@@ -26,6 +26,9 @@ class Genetic {
     }
     private void run()
     {
+        if(Main.verbose) {
+            System.out.println("\t\tGenetic: Creating a random population of size 100");
+        }
         generateRandomPopulation(100);
 
         while(!foundSolution() && this.iterations < 2000) {
@@ -101,6 +104,9 @@ class Genetic {
             int c2i = randomGenerator.nextInt(populationCopy.size());
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
+            if(Main.verbose) {
+                System.out.println("\t\tGenetic: Throwing out least fit chromosome in tournament selection. (" + c1.getConflicts() + " vs. " + c2.getConflicts() + ")");
+            }
             // Compare fitness of two chromosomes.  Throw out the loser.
             if (c1.getConflicts() > c2.getConflicts())
                 population.add(c2);
@@ -121,7 +127,9 @@ class Genetic {
             int c2i = randomGenerator.nextInt(populationCopy.size());
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
-
+            if(Main.verbose) {
+                System.out.println("\t\tGenetic: Breeding 2 chromosomes to create 2 children.");
+            }
             //breed them, add parents and offspring back to population
             List<Chromosome> family = crossover(c1, c2);
             population.addAll(family);
@@ -153,6 +161,9 @@ class Genetic {
         fitness(childChromosome1);
         fitness(childChromosome2);
 
+        if(Main.verbose) {
+            System.out.println("\t\tGenetic: Mutating one offspring.");
+        }
         //Mutate a random offspring
         int randomOffspring = randomGenerator.nextInt(2);
         if(randomOffspring == 0)
