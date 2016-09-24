@@ -34,19 +34,25 @@ class BacktrackingMAC {
         success = colorGraph(0);
 
         if(success){
-            System.out.println("\n\tBacktracking with MAC: Successfully found solution with " + k + " colors.");
+            System.out.println("\n\tBacktrackingMAC: Successfully found solution with " + k + " colors.");
         }else{
-            System.out.println("\n\tBacktracking with MAC: Failed to find solution with " + k + " colors.");
+            System.out.println("\n\tBacktrackingMAC: Failed to find solution with " + k + " colors.");
         }
     }
 
     private boolean colorGraph(int vertex){
         //Terminating case
-        if(isSolved(vertex))
+        if(isSolved(vertex)) {
+            if(Main.verbose) {
+                System.out.println("\t\tBacktrackingMAC: Reached base case. Solution found.");
+            }
             return true;
-
+        }
         // For each value in order domain values
         for(int color = 0; color < k; color++) {
+            if(Main.verbose) {
+                System.out.println("\t\tBacktrackingMAC: Attempting to color vertex " + vertex + ".");
+            }
             //Only color if it's in the domain
             if (canColor(vertex, color)) {
                 //Set color
@@ -55,6 +61,9 @@ class BacktrackingMAC {
                 // Track iterations
                 iterations++;
                 if(iterations >= 40000) {
+                    if(Main.verbose) {
+                        System.out.println("\t\tBacktrackingMAC: Too many iterations. Giving up.");
+                    }
                     return false;
                 }
                 //Set domain
@@ -74,10 +83,19 @@ class BacktrackingMAC {
                         return true;
 
                     // Last level didn't work, let's get ready for a new color
+                    if(Main.verbose) {
+                        System.out.println("\t\tBacktrackingMAC: Couldn't color below P" + vertex + ". Trying another color.");
+                    }
                     coloring[vertex] = -1;
                     restoreDomains();
                 }
             }
+            if(Main.verbose) {
+                System.out.println("\t\tBacktrackingMAC: Cannot color P" + vertex + " with color " + color + ".");
+            }
+        }
+        if(Main.verbose) {
+            System.out.println("\t\tBacktrackingMAC: Could not color P" + vertex + ". Backtracking.");
         }
         return false;
     }
