@@ -26,10 +26,8 @@ class Genetic {
     }
     private void run()
     {
-        if(Main.verbose) {
-            System.out.println("\t\tGenetic: Creating a random population of size 100");
-        }
-        generateRandomPopulation(100);
+        int populationSize = 100;
+        generateRandomPopulation(populationSize);
 
         while(!foundSolution() && this.iterations < 2000) {
             tournament();
@@ -39,7 +37,7 @@ class Genetic {
 
         if(success) {
             System.out.println("\n\t\tGenetic Algorithm: Found solution in " + this.iterations + " iterations.");
-            System.out.println("\t\tSolution: " + winner.toString());
+            System.out.println("\t\tSolution: " + winner.toString() + " with fitness " + winner.getFitness());
         }
         else{
             System.out.println("\n\t\tGenetic Algorithm: No solution found in " + this.iterations + " iterations.");
@@ -48,7 +46,7 @@ class Genetic {
 
     private boolean foundSolution() {
         for(Chromosome candidate : population){
-            if(candidate.getConflicts() == 0) {
+            if(candidate.getFitness() == 0) {
                 winner = candidate;
                 this.success = true;
                 return true;
@@ -58,6 +56,9 @@ class Genetic {
     }
 
     private void generateRandomPopulation(int popSize) {
+        if(Main.verbose) {
+            System.out.println("\t\tGenetic: Creating a random population of size " + popSize);
+        }
         for(int i = 0; i < popSize; i ++){
             Chromosome chromosome = createRandomChromosome();
             fitness(chromosome);
@@ -73,7 +74,6 @@ class Genetic {
         return new Chromosome(chromosome);
     }
     private void fitness(Chromosome chromosome) {
-        List<Point> visited = new ArrayList<>();
         int conflicts = 0;
         // Tracks how many nodes without conflicts a candidate has
         int chainCount = 0;
@@ -84,12 +84,12 @@ class Genetic {
         for(Point point : graph.points){
             if(!canColor(point, chromosome.getNodeColor(point.id), chromosome))
             {
+                chromosome.increasePenalty();
                 conflicts++;
             }
         }
 
-        chromosome.setConflicts(conflicts);
-        chromosome.setNodesWithoutConflicts(chainCount);
+        chromosome.setFitness(conflicts);
     }
 
     private void tournament() {
@@ -105,10 +105,10 @@ class Genetic {
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
             if(Main.verbose) {
-                System.out.println("\t\tGenetic: Throwing out least fit chromosome in tournament selection. (" + c1.getConflicts() + " vs. " + c2.getConflicts() + ")");
+                System.out.println("\t\tGenetic: Throwing out least fit chromosome in tournament selection. (" + c1.getFitness() + " vs. " + c2.getFitness() + ")");
             }
             // Compare fitness of two chromosomes.  Throw out the loser.
-            if (c1.getConflicts() > c2.getConflicts())
+            if (c1.getFitness() > c2.getFitness())
                 population.add(c2);
             else
                 population.add(c1);
@@ -127,7 +127,8 @@ class Genetic {
             int c2i = randomGenerator.nextInt(populationCopy.size());
             Chromosome c2 = populationCopy.get(c2i);
             populationCopy.remove(c2i);
-            if(Main.verbose) {
+
+            if (Main.verbose) {
                 System.out.println("\t\tGenetic: Breeding 2 chromosomes to create 2 children.");
             }
             //breed them, add parents and offspring back to population
@@ -153,23 +154,23 @@ class Genetic {
         for(int i = crossoverPoint; i < c1.getChromosome().length; i++){
             child1[i] = p2[i];
             child2[i] = p1[i];
-
         }
 
         Chromosome childChromosome1 = new Chromosome(child1);
         Chromosome childChromosome2 = new Chromosome(child2);
         fitness(childChromosome1);
         fitness(childChromosome2);
-
-        if(Main.verbose) {
-            System.out.println("\t\tGenetic: Mutating one offspring.");
+        //Mutate a random offspring with probablity 1/1000.
+        if(randomGenerator.nextFloat() <= 0.01) {
+            if(Main.verbose) {
+                System.out.println("\t\tGenetic: Mutating one offspring.");
+            }
+            int randomOffspring = randomGenerator.nextInt(2);
+            if (randomOffspring == 0)
+                mutate(childChromosome1);
+            else
+                mutate(childChromosome2);
         }
-        //Mutate a random offspring
-        int randomOffspring = randomGenerator.nextInt(2);
-        if(randomOffspring == 0)
-            mutate(childChromosome1);
-        else
-            mutate(childChromosome2);
 
         family.add(childChromosome1);
         family.add(childChromosome2);

@@ -1,0 +1,1129 @@
+Graph: Points Created:
+	P0: (0.9955766201019287, 0.28215083479881287)
+	P1: (0.6670684218406677, 0.9766953587532043)
+	P2: (0.34315162897109985, 0.9526340961456299)
+	P3: (0.1689992994070053, 0.6626362204551697)
+	P4: (0.7731838822364807, 0.12253012508153915)
+	P5: (0.668610692024231, 0.5377963781356812)
+	P6: (0.415789395570755, 0.2786206603050232)
+	P7: (0.16834144294261932, 0.7344338297843933)
+	P8: (0.02104746364057064, 0.6544475555419922)
+	P9: (0.0030270384158939123, 0.9856789708137512)
+Graph: Connections Created:
+	C0: P8 connects to P3
+	C1: P3 connects to P7
+	C2: P7 connects to P8
+	C3: P8 connects to P9
+	C4: P4 connects to P0
+	C5: P5 connects to P6
+	C6: P6 connects to P5
+	C7: P0 connects to P1
+	C8: P6 connects to P4
+	C9: P6 connects to P3
+	C10: P6 connects to P7
+	C11: P9 connects to P7
+	C12: P4 connects to P5
+	C13: P1 connects to P2
+	C14: P4 connects to P1
+	C15: P2 connects to P6
+Graph: Generated graph with 10 points.
+		Min-conflict: Initially coloring P6 to 1
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P4 to 1
+		Min-conflict: Removing color from P4 due to conflicts
+		Min-conflict: Initially coloring P4 to 1
+		Min-conflict: Removing color from P4 due to conflicts
+		Min-conflict: Initially coloring P8 to 1
+		Min-conflict: Initially coloring P3 to 1
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P5 to 1
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P1 to 1
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P1 to 1
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P9 to 1
+		Min-conflict: Removing color from P9 due to conflicts
+		Min-conflict: Initially coloring P2 to 1
+		Min-conflict: Removing color from P2 due to conflicts
+		Min-conflict: Initially coloring P7 to 2
+		Min-conflict: Initially coloring P4 to 2
+		Min-conflict: Initially coloring P3 to 2
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P5 to 2
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P5 to 2
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P1 to 2
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P3 to 2
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P1 to 2
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P9 to 2
+		Min-conflict: Removing color from P9 due to conflicts
+		Min-conflict: Initially coloring P2 to 2
+		Min-conflict: Initially coloring P3 to 3
+		Min-conflict: Initially coloring P5 to 3
+		Min-conflict: Initially coloring P1 to 3
+		Min-conflict: Initially coloring P9 to 3
+
+
+	MinConflict: SUCCESS
+
+		Min-conflict: Total conflicts remaining: 0
+		Min-conflict: Total number of points colored/reColored: 10
+
+		SimpleBacktracking: Checking P0 for possible colors.
+		SimpleBacktracking: Coloring P0 color 1
+		SimpleBacktracking: Checking P1 for possible colors.
+		SimpleBacktracking: P1 can't be colored with color 1.
+		SimpleBacktracking: Checking P1 for possible colors.
+		SimpleBacktracking: Coloring P1 color 2
+		SimpleBacktracking: Checking P2 for possible colors.
+		SimpleBacktracking: Coloring P2 color 1
+		SimpleBacktracking: Checking P3 for possible colors.
+		SimpleBacktracking: Coloring P3 color 1
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: P4 can't be colored with color 1.
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: P4 can't be colored with color 2.
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: Coloring P4 color 3
+		SimpleBacktracking: Checking P5 for possible colors.
+		SimpleBacktracking: Coloring P5 color 1
+		SimpleBacktracking: Checking P6 for possible colors.
+		SimpleBacktracking: P6 can't be colored with color 1.
+		SimpleBacktracking: Checking P6 for possible colors.
+		SimpleBacktracking: Coloring P6 color 2
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: P7 can't be colored with color 1.
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: P7 can't be colored with color 2.
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: Coloring P7 color 3
+		SimpleBacktracking: Checking P8 for possible colors.
+		SimpleBacktracking: P8 can't be colored with color 1.
+		SimpleBacktracking: Checking P8 for possible colors.
+		SimpleBacktracking: Coloring P8 color 2
+		SimpleBacktracking: Checking P9 for possible colors.
+		SimpleBacktracking: Coloring P9 color 1
+		SimpleBacktracking: Reached base case.
+
+	SimpleBacktracking: Successfully found solution with 3 colors.
+
+		SimpleBacktracking: P0: Color 1
+		SimpleBacktracking: P1: Color 2
+		SimpleBacktracking: P2: Color 1
+		SimpleBacktracking: P3: Color 1
+		SimpleBacktracking: P4: Color 3
+		SimpleBacktracking: P5: Color 1
+		SimpleBacktracking: P6: Color 2
+		SimpleBacktracking: P7: Color 3
+		SimpleBacktracking: P8: Color 2
+		SimpleBacktracking: P9: Color 1
+
+		BacktrackingWithForwardChecking: Checking P0 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P0 color 1
+		BacktrackingWithForwardChecking: Checking P1 for possible colors.
+		BacktrackingWithForwardChecking: Checking P1 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P1 color 2
+		BacktrackingWithForwardChecking: Checking P2 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P2 color 1
+		BacktrackingWithForwardChecking: Checking P3 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P3 color 1
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P4 color 3
+		BacktrackingWithForwardChecking: Checking P5 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P5 color 1
+		BacktrackingWithForwardChecking: Checking P6 for possible colors.
+		BacktrackingWithForwardChecking: Checking P6 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P6 color 2
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P7 color 3
+		BacktrackingWithForwardChecking: Checking P8 for possible colors.
+		BacktrackingWithForwardChecking: Checking P8 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P8 color 2
+		BacktrackingWithForwardChecking: Checking P9 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P9 color 1
+		BacktrackingWithForwardChecking: Reached base case.
+
+	BacktrackingWithForwardChecking: Successfully found solution with 3 colors.
+
+		BacktrackingWithForwardChecking: P0: Color 1
+		BacktrackingWithForwardChecking: P1: Color 2
+		BacktrackingWithForwardChecking: P2: Color 1
+		BacktrackingWithForwardChecking: P3: Color 1
+		BacktrackingWithForwardChecking: P4: Color 3
+		BacktrackingWithForwardChecking: P5: Color 1
+		BacktrackingWithForwardChecking: P6: Color 2
+		BacktrackingWithForwardChecking: P7: Color 3
+		BacktrackingWithForwardChecking: P8: Color 2
+		BacktrackingWithForwardChecking: P9: Color 1
+
+		BacktrackingMAC: Attempting to color vertex 0.
+		BacktrackingMAC: Attempting to color vertex 1.
+		BacktrackingMAC: Cannot color P1 with color 0.
+		BacktrackingMAC: Attempting to color vertex 1.
+		BacktrackingMAC: Attempting to color vertex 2.
+		BacktrackingMAC: Attempting to color vertex 3.
+		BacktrackingMAC: Reached base case. Solution found.
+
+	BacktrackingMAC: Successfully found solution with 3 colors.
+		Genetic: Creating a random population of size 100
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (10 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+
+		Genetic Algorithm: Found solution in 5 iterations.
+		Solution: 1020201210 with fitness 0
+Testing 10 points:
+		Min-conflict: Initially coloring P6 to 1
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P7 to 1
+		Min-conflict: Removing color from P7 due to conflicts
+		Min-conflict: Initially coloring P4 to 1
+		Min-conflict: Removing color from P4 due to conflicts
+		Min-conflict: Initially coloring P4 to 1
+		Min-conflict: Removing color from P4 due to conflicts
+		Min-conflict: Initially coloring P8 to 1
+		Min-conflict: Initially coloring P3 to 1
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P5 to 1
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P1 to 1
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P1 to 1
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P9 to 1
+		Min-conflict: Removing color from P9 due to conflicts
+		Min-conflict: Initially coloring P2 to 1
+		Min-conflict: Removing color from P2 due to conflicts
+		Min-conflict: Initially coloring P7 to 2
+		Min-conflict: Initially coloring P4 to 2
+		Min-conflict: Initially coloring P3 to 2
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P5 to 2
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P5 to 2
+		Min-conflict: Removing color from P5 due to conflicts
+		Min-conflict: Initially coloring P1 to 2
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P3 to 2
+		Min-conflict: Removing color from P3 due to conflicts
+		Min-conflict: Initially coloring P1 to 2
+		Min-conflict: Removing color from P1 due to conflicts
+		Min-conflict: Initially coloring P9 to 2
+		Min-conflict: Removing color from P9 due to conflicts
+		Min-conflict: Initially coloring P2 to 2
+		Min-conflict: Initially coloring P3 to 3
+		Min-conflict: Initially coloring P5 to 3
+		Min-conflict: Initially coloring P1 to 3
+		Min-conflict: Initially coloring P9 to 3
+
+
+	MinConflict: SUCCESS
+
+		Min-conflict: Total conflicts remaining: 0
+		Min-conflict: Total number of points colored/reColored: 10
+
+		SimpleBacktracking: Checking P0 for possible colors.
+		SimpleBacktracking: Coloring P0 color 1
+		SimpleBacktracking: Checking P1 for possible colors.
+		SimpleBacktracking: P1 can't be colored with color 1.
+		SimpleBacktracking: Checking P1 for possible colors.
+		SimpleBacktracking: Coloring P1 color 2
+		SimpleBacktracking: Checking P2 for possible colors.
+		SimpleBacktracking: Coloring P2 color 1
+		SimpleBacktracking: Checking P3 for possible colors.
+		SimpleBacktracking: Coloring P3 color 1
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: P4 can't be colored with color 1.
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: P4 can't be colored with color 2.
+		SimpleBacktracking: Checking P4 for possible colors.
+		SimpleBacktracking: Coloring P4 color 3
+		SimpleBacktracking: Checking P5 for possible colors.
+		SimpleBacktracking: Coloring P5 color 1
+		SimpleBacktracking: Checking P6 for possible colors.
+		SimpleBacktracking: P6 can't be colored with color 1.
+		SimpleBacktracking: Checking P6 for possible colors.
+		SimpleBacktracking: Coloring P6 color 2
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: P7 can't be colored with color 1.
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: P7 can't be colored with color 2.
+		SimpleBacktracking: Checking P7 for possible colors.
+		SimpleBacktracking: Coloring P7 color 3
+		SimpleBacktracking: Checking P8 for possible colors.
+		SimpleBacktracking: P8 can't be colored with color 1.
+		SimpleBacktracking: Checking P8 for possible colors.
+		SimpleBacktracking: Coloring P8 color 2
+		SimpleBacktracking: Checking P9 for possible colors.
+		SimpleBacktracking: Coloring P9 color 1
+		SimpleBacktracking: Reached base case.
+
+	SimpleBacktracking: Successfully found solution with 4 colors.
+
+		SimpleBacktracking: P0: Color 1
+		SimpleBacktracking: P1: Color 2
+		SimpleBacktracking: P2: Color 1
+		SimpleBacktracking: P3: Color 1
+		SimpleBacktracking: P4: Color 3
+		SimpleBacktracking: P5: Color 1
+		SimpleBacktracking: P6: Color 2
+		SimpleBacktracking: P7: Color 3
+		SimpleBacktracking: P8: Color 2
+		SimpleBacktracking: P9: Color 1
+
+		BacktrackingWithForwardChecking: Checking P0 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P0 color 1
+		BacktrackingWithForwardChecking: Checking P1 for possible colors.
+		BacktrackingWithForwardChecking: Checking P1 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P1 color 2
+		BacktrackingWithForwardChecking: Checking P2 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P2 color 1
+		BacktrackingWithForwardChecking: Checking P3 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P3 color 1
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Checking P4 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P4 color 3
+		BacktrackingWithForwardChecking: Checking P5 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P5 color 1
+		BacktrackingWithForwardChecking: Checking P6 for possible colors.
+		BacktrackingWithForwardChecking: Checking P6 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P6 color 2
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Checking P7 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P7 color 3
+		BacktrackingWithForwardChecking: Checking P8 for possible colors.
+		BacktrackingWithForwardChecking: Checking P8 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P8 color 2
+		BacktrackingWithForwardChecking: Checking P9 for possible colors.
+		BacktrackingWithForwardChecking: Coloring P9 color 1
+		BacktrackingWithForwardChecking: Reached base case.
+
+	BacktrackingWithForwardChecking: Successfully found solution with 4 colors.
+
+		BacktrackingWithForwardChecking: P0: Color 1
+		BacktrackingWithForwardChecking: P1: Color 2
+		BacktrackingWithForwardChecking: P2: Color 1
+		BacktrackingWithForwardChecking: P3: Color 1
+		BacktrackingWithForwardChecking: P4: Color 3
+		BacktrackingWithForwardChecking: P5: Color 1
+		BacktrackingWithForwardChecking: P6: Color 2
+		BacktrackingWithForwardChecking: P7: Color 3
+		BacktrackingWithForwardChecking: P8: Color 2
+		BacktrackingWithForwardChecking: P9: Color 1
+
+		BacktrackingMAC: Attempting to color vertex 0.
+		BacktrackingMAC: Attempting to color vertex 1.
+		BacktrackingMAC: Cannot color P1 with color 0.
+		BacktrackingMAC: Attempting to color vertex 1.
+		BacktrackingMAC: Attempting to color vertex 2.
+		BacktrackingMAC: Attempting to color vertex 3.
+		BacktrackingMAC: Attempting to color vertex 4.
+		BacktrackingMAC: Cannot color P4 with color 0.
+		BacktrackingMAC: Attempting to color vertex 4.
+		BacktrackingMAC: Cannot color P4 with color 1.
+		BacktrackingMAC: Attempting to color vertex 4.
+		BacktrackingMAC: Attempting to color vertex 5.
+		BacktrackingMAC: Attempting to color vertex 6.
+		BacktrackingMAC: Cannot color P6 with color 0.
+		BacktrackingMAC: Attempting to color vertex 6.
+		BacktrackingMAC: Attempting to color vertex 7.
+		BacktrackingMAC: Cannot color P7 with color 0.
+		BacktrackingMAC: Attempting to color vertex 7.
+		BacktrackingMAC: Cannot color P7 with color 1.
+		BacktrackingMAC: Attempting to color vertex 7.
+		BacktrackingMAC: Attempting to color vertex 8.
+		BacktrackingMAC: Cannot color P8 with color 0.
+		BacktrackingMAC: Attempting to color vertex 8.
+		BacktrackingMAC: Attempting to color vertex 9.
+		BacktrackingMAC: Reached base case. Solution found.
+
+	BacktrackingMAC: Successfully found solution with 4 colors.
+		Genetic: Creating a random population of size 100
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (9 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (8 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 9)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (7 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 6)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 8)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 7)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (6 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 4)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 3)
+		Genetic: Throwing out least fit chromosome in tournament selection. (5 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (2 vs. 5)
+		Genetic: Throwing out least fit chromosome in tournament selection. (3 vs. 2)
+		Genetic: Throwing out least fit chromosome in tournament selection. (4 vs. 2)
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+		Genetic: Breeding 2 chromosomes to create 2 children.
+
+		Genetic Algorithm: Found solution in 5 iterations.
+		Solution: 0102203102 with fitness 0
+
+Final Results
+
+Test Graphs With 3 Colors:
+	10 points:
+		Try 1:
+			MinConflict: Success, Iterations: 10
+			SimpleBacktracking: Success, Iterations: 10
+			BacktrackingWithForwardChecking: Success, Iterations: 10
+			Backtracking MAC: Success, Iterations: 4
+			Genetic Algorithm: Success, Iterations: 5
+Test Graphs With 4 Colors:
+	10 points:
+		Try 1:
+			MinConflict: Success, Iterations: 10
+			SimpleBacktracking: Success, Iterations: 10
+			BacktrackingWithForwardChecking: Success, Iterations: 10
+			Backtracking MAC: Success, Iterations: 10
+			Genetic Algorithm: Success, Iterations: 5

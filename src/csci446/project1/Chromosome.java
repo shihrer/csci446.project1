@@ -5,25 +5,22 @@ package csci446.project1;
  */
 public class Chromosome {
     private int[] chromosome;
-    private int conflicts;
-    private int nodesWithoutConflicts;
+    private int fitness;
+    private int penaltyFactor;
 
     Chromosome(int[] chromosome){
         this.chromosome = chromosome;
-        this.conflicts = -1;
+        this.fitness = -1;
+        this.penaltyFactor = 1;
     }
 
-    public int getConflicts(){
-        return conflicts;
+    public int getFitness(){
+        // Return the fitness with a penalty factor divided by length of chromosome.
+        // Shorter the chromosome, the more penalty it has for conflicts
+        return fitness * penaltyFactor/chromosome.length;
     }
-    public void setConflicts(int conflicts){
-        this.conflicts = conflicts;
-    }
-    public int getNodesWithoutConflicts(){
-        return nodesWithoutConflicts;
-    }
-    public void setNodesWithoutConflicts(int count){
-        nodesWithoutConflicts = count;
+    public void setFitness(int fitness){
+        this.fitness = fitness;
     }
     public int[] getChromosome(){
         return chromosome;
@@ -35,7 +32,9 @@ public class Chromosome {
     public int getNodeColor(int id) {
         return chromosome[id];
     }
-
+    public void increasePenalty(){
+        penaltyFactor++;
+    }
     @Override
     public String toString(){
         StringBuilder chromeString = new StringBuilder();
